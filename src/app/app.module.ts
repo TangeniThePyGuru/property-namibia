@@ -20,6 +20,7 @@ import {AllInOnePageComponent} from "./pages/all-in-one-page.component";
 import {LoginPageComponent} from "./pages/login-page.component";
 import { LoggedInGuard } from "app/shared/logged-in-guard";
 import { DashboardPageComponent } from './pages/dashboard-page.component';
+import { PropertiesComponent } from './properties/properties.component';
 
 const routes: Routes = [
     { path: 'register', component: RegisterPageComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },
+    { path: 'properties', component: PropertiesComponent },
     { path: '', component: HomePageComponent }
 ];
 
@@ -41,7 +43,8 @@ const routes: Routes = [
         RegisterPageComponent,
         AllInOnePageComponent,
         LoginPageComponent,
-        DashboardPageComponent
+        DashboardPageComponent,
+        PropertiesComponent
     ],
     imports: [
         BrowserModule,

@@ -23,7 +23,6 @@ import { DashboardPageComponent } from './pages/dashboard-page.component';
 
 const routes: Routes = [
     { path: 'register', component: RegisterPageComponent },
-    { path: 'all-in-one', component: AllInOnePageComponent },
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },

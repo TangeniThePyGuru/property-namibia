@@ -10,15 +10,17 @@
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']">Home</a></li>
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['dashboard']" *ngIf="(isLoggedIn|async)">Dashboard</a></li>
-                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
-                    [routerLink]="['register']" *ngIf="!(isLoggedIn|async)">Register</a></li>
+                <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a-->
+                    <!--[routerLink]="['register']" *ngIf="!(isLoggedIn|async)">Register</a></li>-->
                 <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a-->
                         <!--[routerLink]="['properties']" *ngIf="!(isLoggedIn|async)">Properties</a></li>-->
-                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
-                        [routerLink]="['all-in-one']" *ngIf="!(isLoggedIn|async)">All In One</a></li>
+                <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a-->
+                        <!--[routerLink]="['all-in-one']" *ngIf="!(isLoggedIn|async)">All In One</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="(isLoggedIn|async)" class="navbar-text">{{(currentUser()|async).email}}</li>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="!(isLoggedIn|async)"><a
+                        [routerLink]="['register']">Register</a></li>
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="!(isLoggedIn|async)"><a
                         [routerLink]="['login']">Login</a></li>
                 <li *ngIf="(isLoggedIn|async)"><a (click)="logout()" href="#">Logout</a></li>

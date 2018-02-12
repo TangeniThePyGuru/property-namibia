@@ -1,0 +1,4 @@
+<div *ngFor="let property of properties | async" >
+  <app-property-detail [property]='property'></app-property-detail>
+</div>
+<button (click)='deleteProperties()'>Delete Entire List</button>

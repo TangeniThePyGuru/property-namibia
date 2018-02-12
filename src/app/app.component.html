@@ -12,8 +12,8 @@
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['dashboard']" *ngIf="(isLoggedIn|async)">Dashboard</a></li>
                 <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a-->
                     <!--[routerLink]="['register']" *ngIf="!(isLoggedIn|async)">Register</a></li>-->
-                <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a-->
-                        <!--[routerLink]="['properties']" *ngIf="!(isLoggedIn|async)">Properties</a></li>-->
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
+                        [routerLink]="['properties']" *ngIf="!(isLoggedIn|async)">Properties</a></li>
                 <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a-->
                         <!--[routerLink]="['all-in-one']" *ngIf="!(isLoggedIn|async)">All In One</a></li>-->
             </ul>

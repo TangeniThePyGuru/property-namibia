@@ -1,0 +1,7 @@
+<h5>{{ property.title || 'missing title' }}</h5>
+<!--Active: {{ item.active }}-->
+{{ property.timeStamp | date: 'medium' }}
+<!--<span (click)='updateTimeStamp()'>Update Timestamp</span>-->
+<!--<span *ngIf='property.active' (click)='updateActive(false)'>Mark Complete</span>-->
+<!--<span *ngIf='!property.active' (click)='updateActive(true)'>Mark Active</span>-->
+<span (click)='deleteProperty()'>Delete</span>

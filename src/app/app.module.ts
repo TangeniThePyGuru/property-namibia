@@ -34,7 +34,7 @@ const routes: Routes = [
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },
-    { path: 'properties', component: PropertiesListComponent},
+    { path: 'properties', component: PropertiesListComponent, canActivate: [LoggedInGuard]},
     { path: '', component: HomePageComponent }
 ];
 

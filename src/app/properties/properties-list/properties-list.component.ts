@@ -10,12 +10,12 @@ import {PropertyService} from "../shared/property.service";
 })
 export class PropertiesListComponent implements OnInit {
 
-  public items: FirebaseListObservable<Property[]>;
+  public properties: FirebaseListObservable<Property[]>;
 
   constructor(private propertySvc: PropertyService) { }
 
   ngOnInit() {
-    this.items = this.propertySvc.getPropertiesList({limitToLast: 5})
+    this.properties = this.propertySvc.getPropertiesList({limitToLast: 5})
   }
 
   deleteProperties() {

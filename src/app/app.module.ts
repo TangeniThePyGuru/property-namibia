@@ -2,12 +2,12 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularMaterialComponentsModule} from './angular-material-components/angular-material-components.module';
 import {AppComponent} from "./app.component";
 import {firebaseConfig} from "environments/firebaseConfig";
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule,  AngularFireDatabase } from 'angularfire2/database';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import {AuthService} from "app/shared/auth.service";
@@ -61,7 +61,6 @@ const routes: Routes = [
         HttpModule,
         AlertModule.forRoot(),
         AngularFireModule.initializeApp(firebaseConfig, "property-namibia"),
-        AngularFireDatabaseModule,
         AngularFireAuthModule,
         RouterModule.forRoot(routes),
         NoopAnimationsModule,

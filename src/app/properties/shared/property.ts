@@ -3,7 +3,7 @@ export class Property {
     address: string;
     bathrooms: number;
     bedrooms: number;
-    broker: {};
+    // broker: {};
     city: string;
     contact: string;
     description: string;
@@ -11,13 +11,13 @@ export class Property {
     lat: string;
     long: string;
     period: string;
-    pictures: {};
+    // pictures: {};
     price: number;
     state: string;
     tags: string;
     thumbnail: string;
     title: string;
-    timeStamp: number;
+    // timeStamp: number;
     zip: number = 9000;
 
 }

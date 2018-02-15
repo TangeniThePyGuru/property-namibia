@@ -63,7 +63,7 @@ const routes: Routes = [
         ReactiveFormsModule,
         HttpModule,
         AlertModule.forRoot(),
-        AngularFireModule.initializeApp(firebaseConfig, "property-namibia"),
+        AngularFireModule.initializeApp(firebaseConfig),
         AngularFireAuthModule,
         RouterModule.forRoot(routes),
     ],

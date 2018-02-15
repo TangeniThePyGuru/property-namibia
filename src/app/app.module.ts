@@ -6,7 +6,7 @@ import {AngularMaterialComponentsModule} from './angular-material-components/ang
 import {AppComponent} from "./app.component";
 import {firebaseConfig} from "environments/firebaseConfig";
 import { AngularFireModule } from 'angularfire2';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
@@ -63,7 +63,6 @@ const routes: Routes = [
         AngularFireModule.initializeApp(firebaseConfig, "property-namibia"),
         AngularFireAuthModule,
         RouterModule.forRoot(routes),
-        NoopAnimationsModule,
         AngularMaterialComponentsModule,
     ],
     providers: [AuthService, LoggedInGuard, PropertyService, AngularFireDatabase],

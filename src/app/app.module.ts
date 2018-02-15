@@ -2,7 +2,6 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
-import {AngularMaterialComponentsModule} from './angular-material-components/angular-material-components.module';
 import {AppComponent} from "./app.component";
 import {firebaseConfig} from "environments/firebaseConfig";
 import { AngularFireModule } from 'angularfire2';
@@ -12,6 +11,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import {AuthService} from "app/shared/auth.service";
 import {PropertyService} from "./properties/shared/property.service";
+import {UploadService} from "./properties/shared/upload.service";
 
 import {LoginUserComponent} from "app/login-user/login-user.component";
 import {DisplayUserComponent} from "app/display-user/display-user.component";
@@ -28,6 +28,7 @@ import { DashboardPageComponent } from './pages/dashboard-page.component';
 import {PropertiesListComponent} from "./properties/properties-list/properties-list.component";
 import {PropertyDetailComponent} from "./properties/property-detail/property-detail.component";
 import {PropertyFormComponent} from "./properties/property-form/property-form.component";
+import { UploadFormComponent } from './properties/upload-form/upload-form.component';
 
 const routes: Routes = [
     { path: 'register', component: RegisterPageComponent, canActivate: [!LoggedInGuard] },
@@ -35,6 +36,7 @@ const routes: Routes = [
     { path: 'login', component: LoginPageComponent },
     { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },
     { path: 'properties', component: PropertiesListComponent, canActivate: [LoggedInGuard]},
+    { path: 'upload', component: UploadFormComponent, canActivate: [LoggedInGuard]},
     { path: '', component: HomePageComponent }
 ];
 
@@ -52,7 +54,8 @@ const routes: Routes = [
         DashboardPageComponent,
         PropertiesListComponent,
         PropertyDetailComponent,
-        PropertyFormComponent
+        PropertyFormComponent,
+        UploadFormComponent
     ],
     imports: [
         BrowserModule,
@@ -63,9 +66,8 @@ const routes: Routes = [
         AngularFireModule.initializeApp(firebaseConfig, "property-namibia"),
         AngularFireAuthModule,
         RouterModule.forRoot(routes),
-        AngularMaterialComponentsModule,
     ],
-    providers: [AuthService, LoggedInGuard, PropertyService, AngularFireDatabase],
+    providers: [AuthService, LoggedInGuard, PropertyService, UploadService, AngularFireDatabase],
     bootstrap: [AppComponent]
 })
 export class AppModule {

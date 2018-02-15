@@ -14,8 +14,8 @@
                     <!--[routerLink]="['register']" *ngIf="!(isLoggedIn|async)">Register</a></li>-->
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
                         [routerLink]="['properties']" *ngIf="(isLoggedIn|async)">Properties</a></li>
-                <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a-->
-                        <!--[routerLink]="['all-in-one']" *ngIf="!(isLoggedIn|async)">All In One</a></li>-->
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
+                        [routerLink]="['upload']" *ngIf="(isLoggedIn|async)">Upload</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="(isLoggedIn|async)" class="navbar-text">{{(currentUser()|async).email}}</li>

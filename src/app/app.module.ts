@@ -30,7 +30,7 @@ import {PropertyDetailComponent} from "./properties/property-detail/property-det
 import {PropertyFormComponent} from "./properties/property-form/property-form.component";
 
 const routes: Routes = [
-    { path: 'register', component: RegisterPageComponent },
+    { path: 'register', component: RegisterPageComponent, canActivate: [!LoggedInGuard] },
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },

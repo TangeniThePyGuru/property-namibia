@@ -1,14 +1,155 @@
-<input placeholder="Item Title" class="form-control"
-       [(ngModel)]="item.title"
-       required minlength="2" maxlength="23"
-       #title='ngModel' autofocus>
-<div *ngIf="title.dirty">
-  <span *ngIf='title.errors; then errors else valid'>template renders here...</span>
+<!--<input placeholder="Item Title" class="form-control"-->
+       <!--[(ngModel)]="item.title"-->
+       <!--required minlength="2" maxlength="23"-->
+       <!--#title='ngModel' autofocus>-->
+<!--<div *ngIf="title.dirty">-->
+  <!--<span *ngIf='title.errors; then errors else valid'>template renders here...</span>-->
+<!--</div>-->
+<!--<button class="btn btn-primary" (click)='createProperty()' [disabled]="!title.valid">Create</button>-->
+<!--<ng-template #valid>-->
+  <!--<p class="text-success">looks good!</p>-->
+<!--</ng-template>-->
+<!--<ng-template #errors>-->
+  <!--<p class="text-danger">form contains errors!</p>-->
+<!--</ng-template>-->
+
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Add Property</h4>
+        </div>
+        <div class="panel-body">
+
+            <div class="form-group">
+                <input placeholder="Property Title" class="form-control"
+                       [(ngModel)]="property.title"
+
+                       #title='ngModel' autofocus>
+                <div *ngIf="title.dirty">
+                    <span *ngIf='title.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="textarea" placeholder="Property Address" class="form-control"
+                       [(ngModel)]="property.address"
+
+                       #address='ngModel' autofocus>
+                <div *ngIf="address.dirty">
+                    <span *ngIf='address.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input placeholder="Property Bathrooms" class="form-control"
+                       [(ngModel)]="property.bathrooms"
+
+                       #bathrooms='ngModel' autofocus>
+                <div *ngIf="bathrooms.dirty">
+                    <span *ngIf='bathrooms.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input placeholder="Property Bedrooms" class="form-control"
+                       [(ngModel)]="property.bedrooms"
+
+                       #bedrooms='ngModel' autofocus>
+                <div *ngIf="bedrooms.dirty">
+                    <span *ngIf='bedrooms.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input placeholder="City" class="form-control"
+                       [(ngModel)]="property.city"
+
+                       #city='ngModel' autofocus>
+                <div *ngIf="city.dirty">
+                    <span *ngIf='city.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input placeholder="Contact" class="form-control"
+                       [(ngModel)]="property.contact"
+
+                       #contact='ngModel' autofocus>
+                <div *ngIf="contact.dirty">
+                    <span *ngIf='contact.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input placeholder="Description" class="form-control"
+                       [(ngModel)]="property.description"
+
+                       #description='ngModel' autofocus>
+                <div *ngIf="description.dirty">
+                    <span *ngIf='description.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input placeholder="Label" class="form-control"
+                       [(ngModel)]="property.label"
+
+                       #label='ngModel' autofocus>
+                <div *ngIf="label.dirty">
+                    <span *ngIf='label.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input placeholder="Period" class="form-control"
+                       [(ngModel)]="property.period"
+
+                       #period='ngModel' autofocus>
+                <div *ngIf="period.dirty">
+                    <span *ngIf='period.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input placeholder="Price" class="form-control"
+                       [(ngModel)]="property.price"
+
+                       #price='ngModel' autofocus>
+                <div *ngIf="price.dirty">
+                    <span *ngIf='price.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input placeholder="State" class="form-control"
+                       [(ngModel)]="property.state"
+
+                       #state='ngModel' autofocus>
+                <div *ngIf="state.dirty">
+                    <span *ngIf='state.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input placeholder="Tags" class="form-control"
+                       [(ngModel)]="property.tags"
+
+                       #tags='ngModel' autofocus>
+                <div *ngIf="tags.dirty">
+                    <span *ngIf='tags.errors; then errors else valid'>template renders here...</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" (click)='createProperty()' [disabled]="!title.valid">Create</button>
+                <ng-template #valid>
+                    <p class="text-success">looks good!</p>
+                </ng-template>
+                <ng-template #errors>
+                    <p class="text-danger">form contains errors!</p>
+                </ng-template>
+            </div>
+
+        </div>
+    </div>
 </div>
-<button class="btn btn-primary" (click)='createProperty()' [disabled]="!title.valid">Create</button>
-<ng-template #valid>
-  <p class="text-success">looks good!</p>
-</ng-template>
-<ng-template #errors>
-  <p class="text-danger">form contains errors!</p>
-</ng-template>
+
+

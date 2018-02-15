@@ -1,7 +1,51 @@
-<h5>{{ property.title || 'missing title' }}</h5>
+<!--<h5>{{ property.title || 'missing title' }}</h5>-->
 <!--Active: {{ item.active }}-->
 <!--{{ property.timeStamp | date: 'medium' }}-->
 <!--<span (click)='updateTimeStamp()'>Update Timestamp</span>-->
 <!--<span *ngIf='property.active' (click)='updateActive(false)'>Mark Complete</span>-->
 <!--<span *ngIf='!property.active' (click)='updateActive(true)'>Mark Active</span>-->
-<a class="btn-default" (click)='deleteProperty()'>Delete</a>
+<!--<a class="btn-default" (click)='deleteProperty()'>Delete</a>-->
+
+
+<div class="panel panel-default">
+    <!--<h5>{{ property.title || 'missing title' }}</h5>-->
+    <div class="panel-heading">
+        <h3>Property Title:  {{ property.title }}</h3>
+    </div>
+
+    <div class="panel-body">
+        <div class="col-md-4" width="300" height="200" >
+            <img class="img img-circle" src="{{ property.thumbnail }}" alt="" width="300" height="200" >
+        </div>
+        <div class="col-md-8">
+            Contact:  {{ property.contact }}
+            <br>
+            Address:  {{ property.address }}
+            <br>
+            Bathrooms:  {{ property.bathrooms }}
+            <br>
+            Bedrooms:  {{ property.bedrooms }}
+            <br>
+            City:  {{ property.city }}
+            <br>
+            Label:  {{ property.label }}
+            <br>
+            Period:  {{ property.period }}
+            <br>
+            Price:  {{ property.price }}
+            <br>
+            State:  {{ property.state }}
+            <br>
+            Tags:  {{ property.tags }}
+            <br>
+            Zip:  {{ property.zip }}
+
+        </div>
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-danger" (click)='deleteProperty()'> <i class="fa fa-remove"></i> Delete</a>
+        <!--<a class="btn btn-primary" (click)='updateProperty()'> <i class="fa fa-edit"></i> Edit</a>-->
+        <a class="btn btn-primary" > <i class="fa fa-edit"></i> Edit</a>
+    </div>
+</div>

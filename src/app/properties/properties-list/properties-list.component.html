@@ -1,4 +1,16 @@
-<div *ngFor="let property of properties | async" >
+<!--<div *ngFor="let property of properties | async" >-->
+  <!--<app-property-detail [property]='property'></app-property-detail>-->
+<!--</div>-->
+<!--<button class="btn btn-danger" (click)='deleteProperties()'>Delete Entire List</button>-->
+
+
+
+<!--<app-property-detail [property]='property'></app-property-detail>-->
+<!--<button style="margin-bottom: 10px" class="btn btn-danger" (click)='deleteProperties()'>Delete Entire List</button>-->
+
+<button style="margin-bottom: 10px" class="btn btn-primary-outline"><a [routerLink]="['/properties/create']">
+  <i class="fa fa-plus"></i> Add Property</a></button>
+
+<div *ngFor="let property of properties | async">
   <app-property-detail [property]='property'></app-property-detail>
 </div>
-<!--<button class="btn btn-danger" (click)='deleteProperties()'>Delete Entire List</button>-->

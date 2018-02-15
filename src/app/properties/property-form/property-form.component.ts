@@ -9,15 +9,15 @@ import {PropertyService} from "../shared/property.service";
 })
 export class PropertyFormComponent implements OnInit {
 
-  item: Property = new Property();
+  property: Property = new Property();
   constructor(private propertySvc: PropertyService) { }
 
   ngOnInit() {
   }
 
   createProperty() {
-    this.propertySvc.createItem(this.item)
-    this.item = new Property() // reset item
+    this.propertySvc.createItem(this.property)
+    this.property = new Property(); // reset property
   }
 
 

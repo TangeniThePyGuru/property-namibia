@@ -15,7 +15,7 @@ export class PropertyService {
     this.properties = this.db.list(this.basePath, {
       query: query
     });
-    return this.properties
+    return this.properties;
   }
 
   // Return a single observable item

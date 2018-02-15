@@ -37,6 +37,7 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },
     { path: 'properties', component: PropertiesListComponent, canActivate: [LoggedInGuard]},
     { path: 'upload', component: UploadFormComponent, canActivate: [LoggedInGuard]},
+    { path: 'properties/create', component: PropertyFormComponent, canActivate: [LoggedInGuard]},
     { path: '', component: HomePageComponent }
 ];
 

@@ -7,3 +7,12 @@ Angular problem:
 	The local Angular CLI version is used.
 Solution:
 	npm install --save-dev @angular/cli@latest
+
+Uploading Issue
+    https://github.com/angular/angularfire2/issues/556
+
+    Just removing the name of the app:
+
+    AngularFireModule.initializeApp(environment.firebase,'utoopie')
+    to
+    AngularFireModule.initializeApp(environment.firebase)

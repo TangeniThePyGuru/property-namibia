@@ -14,31 +14,35 @@
     </div>
 
     <div class="panel-body">
-        <div class="col-md-4" width="300" height="200" >
-            <img class="img img-circle" src="{{ property.thumbnail }}" alt="" width="300" height="200" >
+        <div class="col-md-5" >
+            <div class="panel panel-default panel-body">
+                <img class="img img-rounded img-circle"  src="{{ property.thumbnail }}" alt="" width="300px" height="200px" >
+            </div>
         </div>
-        <div class="col-md-8">
-            Contact:  {{ property.contact }}
-            <br>
-            Address:  {{ property.address }}
-            <br>
-            Bathrooms:  {{ property.bathrooms }}
-            <br>
-            Bedrooms:  {{ property.bedrooms }}
-            <br>
-            City:  {{ property.city }}
-            <br>
-            Label:  {{ property.label }}
-            <br>
-            Period:  {{ property.period }}
-            <br>
-            Price:  {{ property.price }}
-            <br>
-            State:  {{ property.state }}
-            <br>
-            Tags:  {{ property.tags }}
-            <br>
-            Zip:  {{ property.zip }}
+        <div class="col-md-7">
+            <div class="panel panel-default panel-body">
+                Contact:  {{ property.contact }}
+                <br>
+                Address:  {{ property.address }}
+                <br>
+                Bathrooms:  {{ property.bathrooms }}
+                <br>
+                Bedrooms:  {{ property.bedrooms }}
+                <br>
+                City:  {{ property.city }}
+                <br>
+                Label:  {{ property.label }}
+                <br>
+                Period:  {{ property.period }}
+                <br>
+                Price:  {{ property.price }}
+                <br>
+                State:  {{ property.state }}
+                <br>
+                Tags:  {{ property.tags }}
+                <br>
+                Zip:  {{ property.zip }}
+            </div>
 
         </div>
     </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Term} from "../shared/term";
+import {TermService} from "../shared/term.service";
 
 @Component({
   selector: 'app-term-form',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TermFormComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+  term: Term = new Term();
+
+  constructor(private termSvc: TermService) { }
+
+  ngOnInit(){}
+
+  createTerm() {
+      this.termSvc.createTerm(this.term)
+      this.term = new Term(); // reset item
   }
-
 }

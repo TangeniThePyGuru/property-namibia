@@ -1,3 +1,31 @@
-<p>
-  term-form works!
-</p>
+
+<div class="form-group">
+  <input placeholder="Term Title" class="form-control"
+         [(ngModel)]="term.title"
+         required minlength="2" maxlength="50"
+         #title='ngModel' autofocus>
+  <div *ngIf="title.dirty">
+    <span *ngIf='title.errors; then errors'>template renders here...</span>
+  </div>
+
+</div>
+
+<div class="form-group">
+  <textarea placeholder="Term Content" class="form-control"
+         [(ngModel)]="term.content"
+         required minlength="2" maxlength="350"
+         #content='ngModel' autofocus>
+  </textarea>
+  <div *ngIf="content.dirty">
+    <span *ngIf='content.errors; then errors'>template renders here...</span>
+  </div>
+
+</div>
+
+<div class="form-group">
+  <button class="btn btn-primary" (click)='createTerm()' [disabled]="!title.valid || !content.valid">Create</button>
+</div>
+
+<ng-template #errors>
+  <p class="text-danger">form contains errors!</p>
+</ng-template>

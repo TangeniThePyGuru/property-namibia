@@ -26,37 +26,92 @@
 
                        #title='ngModel' autofocus>
                 <div *ngIf="title.dirty">
-                    <span *ngIf='title.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='title.errors; then errors'>template renders here...</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="textarea" placeholder="Property Address" class="form-control"
+                <div *ngIf="currentUpload">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+                    </div>
+                    Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="file" (change)="detectFiles($event)" multiple>
+                </label>
+
+                <button
+                        class="btn btn-default"
+                        [disabled]="!selectedFiles"
+                        (click)="uploadMulti()">
+
+                    Upload Property Images
+                </button>
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <input type="file" (change)="detectFile($event)">
+                </label>
+
+                <button class="btn btn-default"
+                        [disabled]="!selectedFile"
+                        (click)="uploadSingle()">
+
+                    Upload Thumbnail
+                </button>
+            </div>
+
+            <div class="form-group">
+                <textarea placeholder="Property Address" class="form-control"
                        [(ngModel)]="property.address"
 
                        #address='ngModel' autofocus>
+                </textarea>
                 <div *ngIf="address.dirty">
-                    <span *ngIf='address.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='address.errors; then errors'>template renders here...</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <input placeholder="Property Bathrooms" class="form-control"
-                       [(ngModel)]="property.bathrooms"
+                <!--<input placeholder="Property Bathrooms" class="form-control"-->
+                       <!--[(ngModel)]="property.bathrooms"-->
 
-                       #bathrooms='ngModel' autofocus>
+                       <!--#bathrooms='ngModel' autofocus>-->
+                <label for="bathrooms">Property Bathrooms</label>
+                <select class="form-control" [(ngModel)]="property.bathrooms" name="bathrooms" #bathrooms='ngModel' autofocus>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+
                 <div *ngIf="bathrooms.dirty">
-                    <span *ngIf='bathrooms.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='bathrooms.errors; then errors'>template renders here...</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <input placeholder="Property Bedrooms" class="form-control"
-                       [(ngModel)]="property.bedrooms"
+                <!--<input placeholder="Property Bedrooms" class="form-control"-->
+                       <!--[(ngModel)]="property.bedrooms"-->
 
-                       #bedrooms='ngModel' autofocus>
+                       <!--#bedrooms='ngModel' autofocus>-->
+                <label for="bedrooms">Property Bedrooms</label>
+                    <select class="form-control" [(ngModel)]="property.bedrooms" placeholder="Property Bedrooms" name="bedrooms" #bedrooms='ngModel' autofocus>
+
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+
                 <div *ngIf="bedrooms.dirty">
-                    <span *ngIf='bedrooms.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='bedrooms.errors; then errors'>template renders here...</span>
                 </div>
             </div>
             <div class="form-group">
@@ -65,7 +120,7 @@
 
                        #city='ngModel' autofocus>
                 <div *ngIf="city.dirty">
-                    <span *ngIf='city.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='city.errors; then errors'>template renders here...</span>
                 </div>
             </div>
 
@@ -75,16 +130,17 @@
 
                        #contact='ngModel' autofocus>
                 <div *ngIf="contact.dirty">
-                    <span *ngIf='contact.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='contact.errors; then errors'>template renders here...</span>
                 </div>
             </div>
             <div class="form-group">
-                <input placeholder="Description" class="form-control"
+                <textarea placeholder="Description" class="form-control"
                        [(ngModel)]="property.description"
 
                        #description='ngModel' autofocus>
+                </textarea>
                 <div *ngIf="description.dirty">
-                    <span *ngIf='description.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='description.errors; then errors'>template renders here...</span>
                 </div>
             </div>
 
@@ -94,7 +150,7 @@
 
                        #label='ngModel' autofocus>
                 <div *ngIf="label.dirty">
-                    <span *ngIf='label.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='label.errors; then errors'>template renders here...</span>
                 </div>
             </div>
 
@@ -104,7 +160,7 @@
 
                        #period='ngModel' autofocus>
                 <div *ngIf="period.dirty">
-                    <span *ngIf='period.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='period.errors; then errors'>template renders here...</span>
                 </div>
             </div>
 
@@ -114,7 +170,7 @@
 
                        #price='ngModel' autofocus>
                 <div *ngIf="price.dirty">
-                    <span *ngIf='price.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='price.errors; then errors'>template renders here...</span>
                 </div>
             </div>
 
@@ -124,7 +180,7 @@
 
                        #state='ngModel' autofocus>
                 <div *ngIf="state.dirty">
-                    <span *ngIf='state.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='state.errors; then errors'>template renders here...</span>
                 </div>
             </div>
 
@@ -134,7 +190,7 @@
 
                        #tags='ngModel' autofocus>
                 <div *ngIf="tags.dirty">
-                    <span *ngIf='tags.errors; then errors else valid'>template renders here...</span>
+                    <span *ngIf='tags.errors; then errors'>template renders here...</span>
                 </div>
             </div>
 

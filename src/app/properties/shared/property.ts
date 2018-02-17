@@ -1,3 +1,5 @@
+import {Upload} from "./upload";
+
 export class Property {
     $key: string;
     address: string;
@@ -11,11 +13,11 @@ export class Property {
     lat: string;
     long: string;
     period: string;
-    // pictures: {};
+    pictures: Upload[]
     price: number;
     state: string;
     tags: string;
-    thumbnail: string;
+    thumbnail: Upload;
     title: string;
     // timeStamp: number;
     zip: number = 9000;

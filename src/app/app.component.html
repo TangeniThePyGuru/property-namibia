@@ -16,6 +16,9 @@
                         [routerLink]="['properties']" *ngIf="(isLoggedIn|async)">Properties</a></li>
 
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
+                        [routerLink]="['terms']" *ngIf="(isLoggedIn|async)">Terms</a></li>
+
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
                         [routerLink]="['upload']" *ngIf="(isLoggedIn|async)">Upload</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

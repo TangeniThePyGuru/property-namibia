@@ -11,10 +11,12 @@
   <div class="panel panel-heading">
     <h5>{{ term.title || 'missing title' }}</h5>
   </div>
-  <div class="panel panel body">
+  <div class="panel-body">
     <p> {{ term.content }} </p>
   </div>
-  <div class="panel panel-footer">
-    <span class="btn btn-danger" (click)='deleteTerm()'>Delete</span>
+  <div class="panel-footer">
+    <span class="btn btn-danger" (click)='deleteTerm()'><i class="fa fa-remove"></i> Delete</span>
+      <!--<a class="btn btn-primary" (click)='updateProperty()'> <i class="fa fa-edit"></i> Edit</a>-->
+      <!--<a class="btn btn-primary" > <i class="fa fa-edit"></i> Edit</a>-->
   </div>
 </div>

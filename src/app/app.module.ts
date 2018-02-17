@@ -31,7 +31,7 @@ import {PropertyFormComponent} from "./properties/property-form/property-form.co
 import { UploadFormComponent } from './properties/upload-form/upload-form.component';
 
 const routes: Routes = [
-    { path: 'register', component: RegisterPageComponent, canActivate: [!LoggedInGuard] },
+    { path: 'register', component: RegisterPageComponent},
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },

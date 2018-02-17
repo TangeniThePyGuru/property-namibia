@@ -3,50 +3,54 @@ import {AngularFireObject} from "angularfire2/database";
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database-deprecated";
 import {Upload} from "./upload";
 import * as firebase from "firebase";
+import {reject} from "q";
+
 
 @Injectable()
 export class UploadService {
 
-    constructor(private db: AngularFireDatabase) {
+    private basePath: string = '/properties';
+    uploads: Upload[] = [];
 
-    }
+    constructor(private db: AngularFireDatabase) {}
 
-    private basePath:string = '/properties';
-    uploads: FirebaseListObservable<Upload[]>;
 
-    pushUpload(upload: Upload) {
+    pushUpload(upload: Upload): Promise<Upload> {
         let storageRef = firebase.storage().ref();
-        let uploadTask = storageRef.child(this.basePath+"/"+upload.file.name).put(upload.file);
-        // let uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
-
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-            (snapshot) =>  {
-                // upload in progress
-                upload.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100
-            },
-            (error) => {
-                // upload failed
-                console.log(error);
-            },
-            () => {
-                // upload success
-                upload.url = uploadTask.snapshot.downloadURL
-                upload.name = upload.file.name
-                this.saveFileData(upload);
-            }
-        );
+        // let uploadTask = storageRef.child(this.basePath+"/"+upload.file.name).put(upload.file);
+        let uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
+        return new Promise((resolve, reject) => {
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+                (snapshot) =>  {
+                    // upload in progress
+                    upload.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100
+                },
+                (error) => {
+                    // upload failed
+                    console.log(error);
+                    return reject(error);
+                },
+                () => {
+                    // upload success
+                    upload.url = uploadTask.snapshot.downloadURL;
+                    upload.name = upload.file.name;
+                    this.saveFileData(upload);
+                    return resolve(upload);
+                }
+            );
+        });
     }
 
     // Writes the file details to the realtime db
-    private saveFileData(upload: Upload) {
+    private saveFileData(upload: Upload): any {
         // this.db.list(`${this.basePath}/`).push(upload);
-        this.db.list(this.basePath+"/").push(upload);
+        return this.db.list(this.basePath+"/").push(upload);
     }
 
     deleteUpload(upload: Upload) {
         this.deleteFileData(upload.$key)
             .then( () => {
-                this.deleteFileStorage(upload.name)
+                this.deleteFileStorage(upload.name);
             })
             .catch(error => console.log(error));
     }
@@ -62,5 +66,4 @@ export class UploadService {
         let storageRef = firebase.storage().ref();
         storageRef.child(`${this.basePath}/${name}`).delete();
     }
-
 }

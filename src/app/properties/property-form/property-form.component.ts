@@ -4,6 +4,7 @@ import {PropertyService} from "../shared/property.service";
 import {Upload} from "../shared/upload";
 import * as _ from "lodash";
 import {UploadService} from "../shared/upload.service";
+import {log} from "util";
 
 @Component({
   selector: 'app-property-form',
@@ -23,6 +24,9 @@ export class PropertyFormComponent implements OnInit {
   }
 
   createProperty() {
+      // add pictures
+      this.property.pictures = this.upSvc.uploads;
+      // this.property.thumbnail
     this.propertySvc.createItem(this.property);
     this.property = new Property(); // reset property
   }
@@ -37,19 +41,22 @@ export class PropertyFormComponent implements OnInit {
 
     uploadSingle() {
         let file = this.selectedFile;
+        console.log(file);
         this.currentUpload = new Upload(file);
         this.upSvc.pushUpload(this.currentUpload);
     }
 
     uploadMulti() {
         let files = this.selectedFiles;
+        console.log(files);
         let filesIndex = _.range(files.length);
         _.each(filesIndex, (idx) => {
             this.currentUpload = new Upload(files[idx]);
-            this.upSvc.pushUpload(this.currentUpload); },
-            (data) => {
+            this.upSvc.pushUpload(this.currentUpload).then((data) => {
                 console.log(data);
-            }
+                this.upSvc.uploads.push(data);
+                // console.log('success');
+            }); }
         );
     }
 

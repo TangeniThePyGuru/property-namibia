@@ -13,7 +13,7 @@ export class Property {
     lat: string;
     long: string;
     period: string;
-    pictures: Upload[]
+    pictures: Upload[];
     price: number;
     state: string;
     tags: string;

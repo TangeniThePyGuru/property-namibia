@@ -32,6 +32,7 @@ import { UploadFormComponent } from './properties/upload-form/upload-form.compon
 import { TermsListComponent } from './terms/terms-list/terms-list.component';
 import { TermFormComponent } from './terms/term-form/term-form.component';
 import {TermService} from "./terms/shared/term.service";
+import { TermDetailComponent } from './terms/term-detail/term-detail.component';
 
 const routes: Routes = [
     { path: 'register', component: RegisterPageComponent},
@@ -64,6 +65,7 @@ const routes: Routes = [
         UploadFormComponent,
         TermsListComponent,
         TermFormComponent,
+        TermDetailComponent,
     ],
     imports: [
         BrowserModule,

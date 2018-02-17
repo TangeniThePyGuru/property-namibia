@@ -1,3 +1,4 @@
-<p>
-  terms-list works!
-</p>
+<button class="btn btn-danger" (click)='deleteTerms()'>Delete Entire List</button>
+<div *ngFor="let term of terms | async" >
+  <app-term-detail [term]='term'></app-term-detail>
+</div>

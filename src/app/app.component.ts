@@ -1,21 +1,25 @@
-import {Component} from "@angular/core";
+import {Component, ViewContainerRef} from "@angular/core";
 import {AuthService} from "app/shared/auth.service";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import {Router} from "@angular/router";
 import {UserInfo} from "app/shared/user-info";
+import {Toasts} from "./shared/toasts"
+import {ToastsManager} from "ng2-toastr";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent extends Toasts {
     private alertType = null;
     private alertMessage = "";
     isLoggedIn = new BehaviorSubject<boolean>(false);
+    // ts = new Toasts();
 
-    constructor(private authService: AuthService, private router: Router) {
+    constructor(private authService: AuthService, private router: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {
+        super(toastr, vcr);
         this.authService.isLoggedIn().subscribe(this.isLoggedIn);
     }
 
@@ -26,6 +30,7 @@ export class AppComponent {
     logout() {
         this.authService.logout();
         this.router.navigate(['/']);
+
     }
 
     onResetPasswordSuccess() {

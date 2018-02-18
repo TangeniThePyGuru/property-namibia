@@ -5,9 +5,11 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {firebaseConfig} from "environments/firebaseConfig";
 import { AngularFireModule } from 'angularfire2';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { ToastModule} from "ng2-toastr"
 
 import {AuthService} from "app/shared/auth.service";
 import {PropertyService} from "./properties/shared/property.service";
@@ -73,6 +75,8 @@ const routes: Routes = [
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFireAuthModule,
         RouterModule.forRoot(routes),
+        BrowserAnimationsModule,
+        ToastModule.forRoot(),
     ],
     providers: [AuthService, LoggedInGuard, PropertyService, UploadService, TermService, AngularFireDatabase],
     bootstrap: [AppComponent]

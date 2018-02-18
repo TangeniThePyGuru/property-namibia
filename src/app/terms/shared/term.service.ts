@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from "angularfire2/database-deprecated";
 import {Term} from "./term";
+import {reject} from "q";
 
 @Injectable()
 export class TermService {
@@ -26,8 +27,14 @@ export class TermService {
         return this.term;
     }
 
-    createTerm(term: Term): void  {
-        this.terms.push(term);
+    createTerm(term: Term): Promise<any>  {
+        return new Promise((resolve, reject) => {
+            this.terms.push(term).then((data) =>{
+                resolve(data);
+            }, (error) => {
+                reject(error);
+            });
+        });
             // .catch(error => this.handleError(error));
     }
 

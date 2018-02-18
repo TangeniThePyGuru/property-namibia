@@ -9,7 +9,7 @@ import {reject} from "q";
 @Injectable()
 export class UploadService {
 
-    private basePath: string = '/properties';
+    private basePath: string = '/uploads';
     uploads: Upload[] = [];
     thumbnail: Upload;
 
@@ -35,7 +35,7 @@ export class UploadService {
                     // upload success
                     upload.url = uploadTask.snapshot.downloadURL;
                     upload.name = upload.file.name;
-                    this.saveFileData(upload);
+                    // this.saveFileData(upload);
                     return resolve(upload);
                 }
             );
@@ -43,10 +43,10 @@ export class UploadService {
     }
 
     // Writes the file details to the realtime db
-    private saveFileData(upload: Upload): any {
-        // this.db.list(`${this.basePath}/`).push(upload);
-        return this.db.list(this.basePath+"/").push(upload);
-    }
+    // private saveFileData(upload: Upload): any {
+    //     // this.db.list(`${this.basePath}/`).push(upload);
+    //     return this.db.list(this.basePath+"/").push(upload);
+    // }
 
     deleteUpload(upload: Upload) {
         this.deleteFileData(upload.$key)

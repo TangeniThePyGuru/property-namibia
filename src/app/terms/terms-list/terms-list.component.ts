@@ -23,7 +23,7 @@ export class TermsListComponent extends Toasts implements OnInit {
     }
 
     ngOnInit() {
-        this.terms = this.termSvc.getTermsList({limitToLast: 5});
+        this.terms = this.termSvc.getTermsList();
     }
 
     deleteTerms() {

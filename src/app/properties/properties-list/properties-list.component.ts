@@ -15,7 +15,7 @@ export class PropertiesListComponent implements OnInit {
   constructor(private propertySvc: PropertyService) { }
 
   ngOnInit() {
-    this.properties = this.propertySvc.getPropertiesList({limitToLast: 5})
+    this.properties = this.propertySvc.getPropertiesList();
   }
 
   deleteProperties() {

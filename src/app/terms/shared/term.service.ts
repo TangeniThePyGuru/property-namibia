@@ -50,8 +50,8 @@ export class TermService {
         return new Promise((resolve, reject) => {
             this.terms.remove(key).then((data) => {
                 resolve(data);
-            }, (error) => {
-                reject(error);
+            }, (data) => {
+                reject(data);
             });
         });
     }

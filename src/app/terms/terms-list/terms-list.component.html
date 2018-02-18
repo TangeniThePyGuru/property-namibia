@@ -1,4 +1,5 @@
 <!--<button class="btn btn-danger" (click)='deleteTerms()'>Delete Entire List</button>-->
+<ng4-loading-spinner [zIndex]="9999" > </ng4-loading-spinner>
 <button style="margin-bottom: 10px" class="btn btn-primary-outline"><a [routerLink]="['/terms/create']">
   <i class="fa fa-plus"></i> Add Term</a></button>
 <div *ngFor="let term of terms | async" >

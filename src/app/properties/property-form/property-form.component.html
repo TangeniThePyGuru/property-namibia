@@ -90,7 +90,7 @@
 
                 <div class="form-group">
                     <label>
-                        <input type="file" [(ngModel)]="property.pictures" (change)="detectFiles($event)" multiple required>
+                        <input type="file" (change)="detectFiles($event)" multiple required>
                     </label>
 
                     <button
@@ -105,7 +105,7 @@
                 <div class="form-group">
 
                     <label>
-                        <input type="file" [(ngModel)]="property.thumbnail"  (change)="detectFile($event)" required>
+                        <input type="file"  (change)="detectFile($event)" required>
                     </label>
 
                     <button class="btn btn-default"

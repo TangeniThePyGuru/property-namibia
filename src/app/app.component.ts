@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {UserInfo} from "app/shared/user-info";
 import {Toasts} from "./shared/toasts"
 import {ToastsManager} from "ng2-toastr";
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-root',
@@ -18,9 +19,15 @@ export class AppComponent extends Toasts {
     isLoggedIn = new BehaviorSubject<boolean>(false);
     // ts = new Toasts();
 
-    constructor(private authService: AuthService, private router: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    constructor(private authService: AuthService, private router: Router,
+                public toastr: ToastsManager, vcr: ViewContainerRef,
+                private spinnerService: Ng4LoadingSpinnerService) {
         super(toastr, vcr);
         this.authService.isLoggedIn().subscribe(this.isLoggedIn);
+        this.spinnerService.show();
+        setTimeout(() => {
+            this.spinnerService.hide();
+        }, 1000);
     }
 
     currentUser(): Observable<UserInfo> {

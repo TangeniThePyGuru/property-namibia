@@ -46,9 +46,17 @@ export class TermService {
     }
 
     // Deletes a single term
-    deleteTerm(key: string): void {
-        this.terms.remove(key)
-            .catch(error => this.handleError(error));
+    deleteTerm(key: string): Promise<any> {
+
+            // .catch(error => this.handleError(error));
+
+        return new Promise((resolve, reject) => {
+            this.terms.remove(key).then((data) => {
+                resolve(data);
+            }, (error) => {
+                reject(error);
+            });
+        });
     }
 
     // Deletes the entire list of terms

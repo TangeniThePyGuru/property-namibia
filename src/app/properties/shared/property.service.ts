@@ -42,9 +42,14 @@ export class PropertyService {
         .catch(error => this.handleError(error))
   }
   // Deletes a single property
-  deleteProperty(key: string): void {
-    this.properties.remove(key)
-        .catch(error => this.handleError(error))
+  deleteProperty(key: string): Promise<any> {
+      return new Promise((resolve, reject) => {
+          this.properties.remove(key).then((data) => {
+            resolve(data);
+          }, (data) => {
+            reject(data);
+          });
+      });
   }
   // Deletes the entire list of properties
   deleteAll(): void {

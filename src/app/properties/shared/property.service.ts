@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { Property } from './property';
+import {reject} from "q";
 
 @Injectable()
 export class PropertyService {
@@ -25,8 +26,14 @@ export class PropertyService {
     return this.property
   }
 
-  createItem(property: Property): void  {
-    this.properties.push(property)
+  createProperty(property: Property): Promise<any>  {
+      return new Promise((resolve, reject) => {
+          this.properties.push(property).then(() => {
+            resolve(property);
+          }, () =>{
+            reject(property);
+          });
+      });
         // .catch(error => this.handleError(error))
   }
   // Update an existing property

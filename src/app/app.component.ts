@@ -30,6 +30,7 @@ export class AppComponent extends Toasts {
     logout() {
         this.authService.logout();
         this.router.navigate(['/']);
+        this.showInfo('Your session has ended!')
 
     }
 

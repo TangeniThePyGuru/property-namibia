@@ -15,7 +15,7 @@ export class PropertyFormComponent implements OnInit {
 
   property: Property = new Property();
   selectedFiles: FileList;
-  selectedFile: File;
+  selectedFile: FileList;
   currentUpload: Upload;
 
   constructor( private upSvc: UploadService, private propertySvc: PropertyService) { }
@@ -26,9 +26,9 @@ export class PropertyFormComponent implements OnInit {
   createProperty() {
       // add pictures
       this.property.pictures = this.upSvc.uploads;
-      // this.property.thumbnail
+      this.property.thumbnail = this.upSvc.thumbnail;
     this.propertySvc.createItem(this.property);
-    this.property = new Property(); // reset property
+    this.property = new Property()  ; // reset property
   }
 
     detectFiles(event) {
@@ -41,9 +41,16 @@ export class PropertyFormComponent implements OnInit {
 
     uploadSingle() {
         let file = this.selectedFile;
-        console.log(file);
-        this.currentUpload = new Upload(file);
-        this.upSvc.pushUpload(this.currentUpload);
+        let filesIndex = _.range(file.length);
+        _.each(filesIndex, (idx) => {
+            this.currentUpload = new Upload(file[idx]);
+            this.upSvc.pushUpload(this.currentUpload).then((data) => {
+                this.upSvc.thumbnail = data;
+            }, (error) => {
+                console.log(error);
+            });
+        });
+
     }
 
     uploadMulti() {

@@ -11,6 +11,7 @@ export class UploadService {
 
     private basePath: string = '/properties';
     uploads: Upload[] = [];
+    thumbnail: Upload;
 
     constructor(private db: AngularFireDatabase) {}
 

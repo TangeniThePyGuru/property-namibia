@@ -9,7 +9,6 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']">Home</a></li>
-                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['dashboard']" *ngIf="(isLoggedIn|async)">Dashboard</a></li>
                 <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a-->
                     <!--[routerLink]="['register']" *ngIf="!(isLoggedIn|async)">Register</a></li>-->
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a

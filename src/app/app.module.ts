@@ -26,7 +26,6 @@ import {RegisterPageComponent} from "./pages/register-page.component";
 import {AllInOnePageComponent} from "./pages/all-in-one-page.component";
 import {LoginPageComponent} from "./pages/login-page.component";
 import { LoggedInGuard } from "app/shared/logged-in-guard";
-import { DashboardPageComponent } from './pages/dashboard-page.component';
 import {PropertiesListComponent} from "./properties/properties-list/properties-list.component";
 import {PropertyDetailComponent} from "./properties/property-detail/property-detail.component";
 import {PropertyFormComponent} from "./properties/property-form/property-form.component";
@@ -41,7 +40,6 @@ const routes: Routes = [
     { path: 'register', component: RegisterPageComponent},
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'login', component: LoginPageComponent },
-    { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },
     { path: 'properties', component: PropertiesListComponent, canActivate: [LoggedInGuard]},
     { path: 'properties/create', component: PropertyFormComponent, canActivate: [LoggedInGuard]},
     { path: 'terms', component: TermsListComponent, canActivate: [LoggedInGuard]},
@@ -60,7 +58,6 @@ const routes: Routes = [
         RegisterPageComponent,
         AllInOnePageComponent,
         LoginPageComponent,
-        DashboardPageComponent,
         PropertiesListComponent,
         PropertyDetailComponent,
         PropertyFormComponent,

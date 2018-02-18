@@ -1,20 +1,23 @@
-import {Component, EventEmitter, Output} from "@angular/core";
+import {Component, EventEmitter, Output, ViewContainerRef} from "@angular/core";
 import {AuthService} from "app/shared/auth.service";
 import {FormBuilder, Validators, AbstractControl, FormGroup} from "@angular/forms";
+import {Toasts} from "../shared/toasts";
+import {ToastsManager} from "ng2-toastr";
 
 @Component({
     selector: 'app-login-user',
     templateUrl: './login-user.component.html',
     styleUrls: ['./login-user.component.css']
 })
-export class LoginUserComponent {
+export class LoginUserComponent extends Toasts {
     form: FormGroup;
     email: AbstractControl;
     password: AbstractControl;
     @Output() onSuccess = new EventEmitter();
     @Output() onError = new EventEmitter();
 
-    constructor(private authService: AuthService, private fb: FormBuilder) {
+    constructor(private authService: AuthService, private fb: FormBuilder, public toastr: ToastsManager, vcr: ViewContainerRef) {
+        super(toastr, vcr);
         this.form = fb.group({
             'email': ['', Validators.required],
             'password': ['', Validators.required]
@@ -30,8 +33,12 @@ export class LoginUserComponent {
                     () => {
                         this.onSuccess.emit();
                         this.form.reset();
+                        this.showInfo('Login Success');
                     },
-                    (err) => this.onError.emit(err)
+                    (err) => {
+                        this.onError.emit(err)
+                        this.showError('Login Error: Please Double Check Your Login Credentials');
+                    }
                 );
         }
     }

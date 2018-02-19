@@ -34,6 +34,7 @@ import { TermFormComponent } from './terms/term-form/term-form.component';
 import {TermService} from "./terms/shared/term.service";
 import { TermDetailComponent } from './terms/term-detail/term-detail.component';
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
+import {AngularFontAwesomeModule} from "angular-font-awesome";
 
 
 const routes: Routes = [
@@ -76,7 +77,8 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         BrowserAnimationsModule,
         ToastModule.forRoot(),
-        Ng4LoadingSpinnerModule.forRoot()
+        Ng4LoadingSpinnerModule.forRoot(),
+        AngularFontAwesomeModule
     ],
     providers: [
         AuthService,

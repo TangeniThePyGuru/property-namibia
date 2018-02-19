@@ -2,12 +2,19 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" [routerLink]="['']">property-namibia</a>
+            <a class="navbar-brand" [routerLink]="['']"><img src="../assets/HiResLogo.png" height="50px" width="80px" alt=""></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#test" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
 
+
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav" id="test">
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']">Home</a></li>
                 <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a-->
                     <!--[routerLink]="['register']" *ngIf="!(isLoggedIn|async)">Register</a></li>-->

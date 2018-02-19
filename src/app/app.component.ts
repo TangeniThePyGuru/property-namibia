@@ -27,7 +27,7 @@ export class AppComponent extends Toasts {
         this.spinnerService.show();
         setTimeout(() => {
             this.spinnerService.hide();
-        }, 1000);
+        }, 3000);
     }
 
     currentUser(): Observable<UserInfo> {

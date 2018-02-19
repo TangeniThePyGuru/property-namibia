@@ -10,8 +10,8 @@ import {reject} from "q";
 export class UploadService {
 
     private basePath: string = '/uploads';
-    uploads: Upload[] = [];
-    thumbnail: Upload;
+    uploads: string[] = [];
+    thumbnail: string;
 
     constructor(private db: AngularFireDatabase) {}
 

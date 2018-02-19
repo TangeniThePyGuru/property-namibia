@@ -32,10 +32,10 @@ export class PropertyFormComponent extends Toasts implements OnInit {
       this.property.pictures = this.upSvc.uploads;
       this.property.thumbnail = this.upSvc.thumbnail;
     this.propertySvc.createProperty(this.property).then(() => {
-        this.showSuccess();
-        this.property = new Property()
+        this.showSuccess('Property Successfully Added!');
+        this.property = new Property();
     }, () => {
-        this.showError();
+        this.showError('Error, Please Try Again!' );
     })
   }
 
@@ -49,13 +49,15 @@ export class PropertyFormComponent extends Toasts implements OnInit {
 
     uploadSingle() {
         let file = this.selectedFile;
+        this.showInfo('Property images are uploading please Wait!')
         let filesIndex = _.range(file.length);
         _.each(filesIndex, (idx) => {
             this.currentUpload = new Upload(file[idx]);
             this.upSvc.pushUpload(this.currentUpload).then((data) => {
-                this.upSvc.thumbnail = data;
+                this.upSvc.thumbnail = data.url;
+                this.showSuccess('File: ' +  idx + 1 + ' succesfully uploaded');
             }, (error) => {
-                console.log(error);
+                this.showError('Error! File ' + idx + 1 + ', not uploaded, please try again!');
             });
         });
 
@@ -64,13 +66,20 @@ export class PropertyFormComponent extends Toasts implements OnInit {
     uploadMulti() {
         let files = this.selectedFiles;
         console.log(files);
+        this.showInfo('Property images are uploading please Wait!')
+        let count = 1;
         let filesIndex = _.range(files.length);
         _.each(filesIndex, (idx) => {
             this.currentUpload = new Upload(files[idx]);
+            // this.currentUpload.progress = 0;
             this.upSvc.pushUpload(this.currentUpload).then((data) => {
                 console.log(data);
-                this.upSvc.uploads.push(data);
-                // console.log('success');
+                this.upSvc.uploads.push(data.url);
+                this.showSuccess('File: ' + count  + ' succesfully uploaded');
+                count++;
+            }, () => {
+                this.showError('Error! File ' + count + ', not uploaded, please try again!');
+                count++;
             }); }
         );
     }

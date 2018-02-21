@@ -19,6 +19,57 @@ export class PropertyFormComponent extends Toasts implements OnInit {
   selectedFiles: FileList;
   selectedFile: FileList;
   currentUpload: Upload;
+    bed_rooms = [
+        {id: 1, name: '1 bedroom'},
+        {id: 2, name: '2 bedrooms'},
+        {id: 3, name: '3 bedrooms'},
+        {id: 4, name: '4 bedrooms'},
+        {id: 5, name: '5 bedrooms'}
+    ];
+
+    bath_rooms = [
+        {id: 1, name: '1 bathroom'},
+        {id: 2, name: '2 bathrooms'},
+        {id: 3, name: '3 bathrooms'},
+        {id: 4, name: '4 bathrooms'},
+        {id: 5, name: '5 bathrooms'}
+    ];
+
+    property_label = [
+        {id: 'sale', name: 'For Sale'},
+        {id: 'rent', name: 'For Rent'},
+    ];
+
+    property_tag = [
+        {id: 'townhouse', name: 'Townhouse'},
+        {id: 'victorian', name: 'Victorian'},
+        {id: 'contemporary', name: 'Contemporary'},
+    ];
+
+    property_period = [
+        {id: 'month', name: 'Month'},
+        {id: 'none', name: '--None--'},
+    ];
+
+    property_state = [
+        {id: 'WHK', name: 'Windhoek'},
+        {id: 'GBB', name: 'Bobabis'},
+        {id: 'OTJ', name: 'Otjiwarongo'},
+        {id: 'OND', name: 'Ondangwa'},
+        {id: 'LUD', name: 'Luderitz'},
+        {id: 'SH', name: 'Oshakati'},
+    ];
+
+    property_city = [
+        {id: 'windhoek', name: 'Windhoek'},
+        {id: 'okahanja', name: 'Okahanja'},
+        {id: 'rehoboth', name: 'Rehoboth'},
+        {id: 'swakopmund', name: 'Swakopmund'},
+        {id: 'walvisbay', name: 'Walvisbay'},
+        {id: 'luderitz', name: 'Luderitz'},
+        {id: 'keetmanshoop', name: 'Keetmanshoop'},
+        {id: 'ondangwa', name: 'Ondangwa'},
+    ];
 
   constructor( private upSvc: UploadService, private propertySvc: PropertyService, public toastr: ToastsManager, vcr: ViewContainerRef ) {
       super(toastr, vcr);
@@ -35,7 +86,7 @@ export class PropertyFormComponent extends Toasts implements OnInit {
         this.showSuccess('Property Successfully Added!');
         this.property = new Property();
     }, () => {
-        this.showError('Error, Please Try Again!' );
+        this.showError('Error, Wait for the upload to finish, or check your connection and Try Again!' );
     })
   }
 
@@ -57,6 +108,7 @@ export class PropertyFormComponent extends Toasts implements OnInit {
                 this.upSvc.thumbnail = data.url;
                 this.showSuccess('File: ' +  idx + 1 + ' succesfully uploaded');
             }, (error) => {
+                console.log(error)
                 this.showError('Error! File ' + idx + 1 + ', not uploaded, please try again!');
             });
         });

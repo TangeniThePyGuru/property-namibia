@@ -1,4 +1,4 @@
-import {Component, ViewContainerRef} from "@angular/core";
+import {Component, ViewContainerRef, AfterViewInit} from "@angular/core";
 import {AuthService} from "app/shared/auth.service";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
@@ -7,17 +7,19 @@ import {UserInfo} from "app/shared/user-info";
 import {Toasts} from "./shared/toasts"
 import {ToastsManager} from "ng2-toastr";
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import {element} from "protractor";
+import {document} from "ngx-bootstrap/utils/facade/browser";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent extends Toasts {
+export class AppComponent extends Toasts implements AfterViewInit {
     private alertType = null;
     private alertMessage = "";
     isLoggedIn = new BehaviorSubject<boolean>(false);
-    // ts = new Toasts();
+    template: string = `<img src="http://pa1.narvii.com/5722/2c617cd9674417d272084884b61e4bb7dd5f0b15_hq.gif" />`
 
     constructor(private authService: AuthService, private router: Router,
                 public toastr: ToastsManager, vcr: ViewContainerRef,
@@ -25,9 +27,21 @@ export class AppComponent extends Toasts {
         super(toastr, vcr);
         this.authService.isLoggedIn().subscribe(this.isLoggedIn);
         this.spinnerService.show();
-        setTimeout(() => {
-            this.spinnerService.hide();
-        }, 3000);
+        // setTimeout(() => {
+            // this.spinnerService.hide();
+        // }, 3000);
+
+
+    }
+
+
+    ngAfterViewInit() {
+        // Copy in all the js code from the script.js. Typescript will complain but it works just fine
+        // this.spinnerService.show();
+        this.spinnerService.hide();
+        // element(document).then(function () {
+        //     this.spinnerService.hide();
+        // });
     }
 
     currentUser(): Observable<UserInfo> {

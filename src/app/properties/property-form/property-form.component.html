@@ -23,20 +23,31 @@
                 </div>
 
                 <div class="form-group">
-                    <input placeholder="State" class="form-control"
-                           [(ngModel)]="property.state"
 
-                           #state='ngModel' autofocus>
+                    <ng-select [items]="property_state"
+                               [(ngModel)]="property.state"
+                               #state='ngModel'
+                               autofocus
+                               bindLabel="name"
+                               bindValue="id"
+                               placeholder="Property State">
+                    </ng-select>
                     <div *ngIf="state.dirty">
                         <span *ngIf='state.errors; then errors'>template renders here...</span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <input placeholder="Tags" class="form-control"
-                           [(ngModel)]="property.tags"
+                    <label > Property Tag</label>
+                    <ng-select [items]="property_tag"
+                               [(ngModel)]="property.tags"
+                               #tags='ngModel'
+                               autofocus
+                               bindLabel="name"
+                               bindValue="id"
+                               placeholder="Tag The Property">
+                    </ng-select>
 
-                           #tags='ngModel' autofocus>
                     <div *ngIf="tags.dirty">
                         <span *ngIf='tags.errors; then errors'>template renders here...</span>
                     </div>
@@ -64,10 +75,16 @@
                 </div>
 
                 <div class="form-group">
-                    <input placeholder="Label" class="form-control"
-                           [(ngModel)]="property.label"
+                    <label > Property Label</label>
+                    <ng-select [items]="property_label"
+                               [(ngModel)]="property.label"
+                               #label='ngModel'
+                               autofocus
+                               bindLabel="name"
+                               bindValue="id"
+                               placeholder="Label The Property (Sale / Rent)">
+                    </ng-select>
 
-                           #label='ngModel' autofocus>
                     <div *ngIf="label.dirty">
                         <span *ngIf='label.errors; then errors'>template renders here...</span>
                     </div>
@@ -135,10 +152,17 @@
                 </div>
 
                 <div class="form-group">
-                    <input placeholder="City" class="form-control"
-                           [(ngModel)]="property.city"
 
-                           #city='ngModel' autofocus>
+                    <label> Property City</label>
+                    <ng-select [items]="property_city"
+                               [(ngModel)]="property.city"
+                               #city='ngModel'
+                               autofocus
+                               bindLabel="name"
+                               bindValue="id"
+                               placeholder="Property City">
+                    </ng-select>
+
                     <div *ngIf="city.dirty">
                         <span *ngIf='city.errors; then errors'>template renders here...</span>
                     </div>
@@ -154,18 +178,15 @@
                 </legend>
 
                 <div class="form-group">
-                    <!--<input placeholder="Property Bathrooms" class="form-control"-->
-                    <!--[(ngModel)]="property.bathrooms"-->
-
-                    <!--#bathrooms='ngModel' autofocus>-->
-                    <label for="bathrooms">Property Bathrooms</label>
-                    <select class="form-control" [(ngModel)]="property.bathrooms" name="bathrooms" #bathrooms='ngModel' autofocus>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-
+                    <label>Property Bathrooms</label>
+                    <ng-select [items]="bath_rooms"
+                            [(ngModel)]="property.bathrooms"
+                            #bathrooms='ngModel'
+                            autofocus
+                           bindLabel="name"
+                           bindValue="id"
+                           placeholder="Select Property Bathrooms">
+                    </ng-select>
 
 
                     <div *ngIf="bathrooms.dirty">
@@ -174,18 +195,15 @@
                 </div>
 
                 <div class="form-group">
-                    <!--<input placeholder="Property Bedrooms" class="form-control"-->
-                    <!--[(ngModel)]="property.bedrooms"-->
-
-                    <!--#bedrooms='ngModel' autofocus>-->
-                    <label for="bedrooms">Property Bedrooms</label>
-                    <select class="form-control" [(ngModel)]="property.bedrooms" placeholder="Property Bedrooms" name="bedrooms" #bedrooms='ngModel' autofocus>
-
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
+                    <label>Property Bedrooms</label>
+                    <ng-select [items]="bed_rooms"
+                               [(ngModel)]="property.bedrooms"
+                               #bedrooms='ngModel'
+                               autofocus
+                               bindLabel="name"
+                               bindValue="id"
+                               placeholder="Select Property Bedrooms">
+                    </ng-select>
 
                     <div *ngIf="bedrooms.dirty">
                         <span *ngIf='bedrooms.errors; then errors'>template renders here...</span>
@@ -212,10 +230,17 @@
                 </div>
 
                 <div class="form-group">
-                    <input placeholder="Period" class="form-control"
-                           [(ngModel)]="property.period"
 
-                           #period='ngModel' autofocus>
+                    <label > Property Period</label>
+                    <ng-select [items]="property_period"
+                               [(ngModel)]="property.period"
+                               #period='ngModel'
+                               autofocus
+                               bindLabel="name"
+                               bindValue="id"
+                               placeholder="Property Rent Period">
+                    </ng-select>
+
                     <div *ngIf="period.dirty">
                         <span *ngIf='period.errors; then errors'>template renders here...</span>
                     </div>

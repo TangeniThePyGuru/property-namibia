@@ -17,14 +17,23 @@ export class TermService {
         this.terms = this.db.list(this.basePath, {
             query: query
         });
+        console.log(this.terms)
         return this.terms;
     }
 
     // Return a single observable term
-    getTerm(key: string): FirebaseObjectObservable<Term> {
+    getTerm(key: string): Promise<any> {
         const termPath =  `${this.basePath}/${key}`;
-        this.term = this.db.object(termPath)
-        return this.term;
+        // this.term =
+           return new Promise((resolve, reject) => {
+               this.db.object(termPath).subscribe((data) => {
+                   resolve(data);
+               }, (error) => {
+                   reject(error);
+               });
+           });
+        // console.log(this.term);
+        // return this.term;
     }
 
     createTerm(term: Term): Promise<any>  {
@@ -40,9 +49,14 @@ export class TermService {
 
 
     // Update an existing term
-    updateTerm(key: string, value: any): void {
-        this.terms.update(key, value)
-            .catch(error => this.handleError(error));
+    updateTerm(key: string, value: any):  Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.terms.update(key, value).then((data) =>{
+                resolve(data);
+            }, (error) => {
+                reject(error);
+            });
+        });
     }
 
     // Deletes a single term

@@ -17,6 +17,9 @@
   <div class="panel-footer">
     <span class="btn btn-danger" (click)='deleteTerm()'><i class="fa fa-remove"></i> Delete</span>
       <!--<a class="btn btn-primary" (click)='updateProperty()'> <i class="fa fa-edit"></i> Edit</a>-->
-      <!--<a class="btn btn-primary" > <i class="fa fa-edit"></i> Edit</a>-->
+      <!--<span class="btn btn-primary" [routerLink]="['terms/update/'+term.$key]" >  <i class="fa fa-edit"></i> Edit</span>-->
+    <!--<a [routerLink]="['terms']" *ngIf="(isLoggedIn|async)">Terms</a>-->
+    <!--<button class="btn btn-primary-outline"><a [routerLink]="['/terms/update/'+term.$key]">-->
+      <!--<i class="fa fa-edit"></i> Edit</a></button>-->
   </div>
 </div>

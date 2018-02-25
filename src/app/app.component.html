@@ -38,6 +38,7 @@
 </nav>
 
 <div class="container">
-    <ng4-loading-spinner [zIndex]="9999" > </ng4-loading-spinner>
-    <router-outlet></router-outlet>
+    <!--<div class="text-center"><i class="fa fa-spinner"></i></div>-->
+    <ng4-loading-spinner [threshold]="2000" [template]="template" [zIndex]="9999" > </ng4-loading-spinner>
+    <router-outlet> </router-outlet>
 </div>

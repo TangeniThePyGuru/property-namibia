@@ -26,10 +26,9 @@ export class TermFormComponent extends Toasts implements OnInit{
       console.log(form);
       this.termSvc.createTerm(this.term).then(() =>{
           this.showSuccess('Term Created');
+          form.reset();
       }).catch(() =>{
           this.showError('Error');
-      })
-      form.reset();
-
+      });
   }
 }

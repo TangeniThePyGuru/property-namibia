@@ -29,7 +29,7 @@ export class TermFormComponent extends Toasts implements OnInit{
       }).catch(() =>{
           this.showError('Error');
       })
-      this.term = new Term('', ''); // reset item
+      form.reset();
 
   }
 }

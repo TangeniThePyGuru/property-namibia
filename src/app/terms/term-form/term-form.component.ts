@@ -3,6 +3,7 @@ import {Term} from "../shared/term";
 import {TermService} from "../shared/term.service";
 import {Toasts} from "../../shared/toasts";
 import {ToastsManager} from "ng2-toastr";
+import {Form} from "@angular/forms";
 
 @Component({
   selector: 'app-term-form',
@@ -12,7 +13,7 @@ import {ToastsManager} from "ng2-toastr";
 export class TermFormComponent extends Toasts implements OnInit{
 
 
-  term: Term = new Term();
+  term: Term;
 
   constructor(private termSvc: TermService, public toastr: ToastsManager, vcr: ViewContainerRef) {
       super(toastr, vcr);
@@ -20,13 +21,15 @@ export class TermFormComponent extends Toasts implements OnInit{
 
   ngOnInit(){}
 
-  createTerm() {
+  createTerm(form) {
+      this.term = new Term(form.value.title, form.value.content);
+      console.log(form);
       this.termSvc.createTerm(this.term).then(() =>{
-          this.showSuccess("Term Created");
+          this.showSuccess('Term Created');
       }).catch(() =>{
           this.showError('Error');
       })
-      this.term = new Term(); // reset item
+      this.term = new Term('', ''); // reset item
 
   }
 }

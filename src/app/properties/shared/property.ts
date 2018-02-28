@@ -24,7 +24,7 @@ export class Property {
     zip: number = 9000;
     status: string;
 
-    constructor( form, uploads, thumbnail, timestamp ) {
+    constructor( form, uploads: string[], thumbnail: string, timestamp ) {
         this.title = form.value.title;
         this.description = form.value.description;
         this.address = form.value.address;

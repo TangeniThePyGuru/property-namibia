@@ -1,5 +1,3 @@
-import {Upload} from "./upload";
-import {Form} from "@angular/forms";
 
 export class Property {
     $key: string;

@@ -16,7 +16,7 @@ import * as firebase from "firebase";
 })
 export class PropertyFormComponent extends Toasts implements OnInit {
 
-  property: Property = new Property();
+  property: Property;
   selectedFiles: FileList;
   selectedFile: FileList;
   currentUpload: Upload;
@@ -79,17 +79,19 @@ export class PropertyFormComponent extends Toasts implements OnInit {
   ngOnInit() {
   }
 
-  createProperty() {
-      // add pictures
-      this.property.pictures = this.upSvc.uploads;
-      this.property.thumbnail = this.upSvc.thumbnail;
-      this.property.timestamp = firebase.database.ServerValue.TIMESTAMP;
-    this.propertySvc.createProperty(this.property).then(() => {
-        this.showSuccess('Property Successfully Added!');
-        this.property = new Property();
-    }, () => {
-        this.showError('Error, Wait for the upload to finish, or check your connection and Try Again!' );
-    })
+  createProperty(form) {
+      // console.log(form);
+      this.property = new Property(form, this.upSvc.uploads, this.upSvc.thumbnail,
+          firebase.database.ServerValue.TIMESTAMP);
+
+      this.propertySvc.createProperty(this.property).then(() => {
+          this.showSuccess('Property Successfully Added!');
+          form.reset();
+          this.currentUpload = null;
+      }, () => {
+          this.showError('Error, Wait for the upload to finish, or check your connection and Try Again!' );
+      });
+
   }
 
     detectFiles(event) {

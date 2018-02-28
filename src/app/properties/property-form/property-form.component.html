@@ -1,268 +1,290 @@
 
 <div class="col-md-8 col-md-offset-2">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4>Add Property</h4>
-        </div>
-        <div class="panel-body">
-
-            <fieldset>
-
-                <legend>
-                    About Property
-                </legend>
-
-                <div class="form-group">
-                    <input placeholder="Property Title" class="form-control"
-                           [(ngModel)]="property.title"
-
-                           #title='ngModel' autofocus>
-                    <div *ngIf="title.dirty">
-                        <span *ngIf='title.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <ng-select [items]="property_state"
-                               [(ngModel)]="property.state"
-                               #state='ngModel'
-                               autofocus
-                               bindLabel="name"
-                               bindValue="id"
-                               placeholder="Property State">
-                    </ng-select>
-                    <div *ngIf="state.dirty">
-                        <span *ngIf='state.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label > Property Tag</label>
-                    <ng-select [items]="property_tag"
-                               [(ngModel)]="property.tags"
-                               #tags='ngModel'
-                               autofocus
-                               bindLabel="name"
-                               bindValue="id"
-                               placeholder="Tag The Property">
-                    </ng-select>
-
-                    <div *ngIf="tags.dirty">
-                        <span *ngIf='tags.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <input placeholder="Price" class="form-control"
-                           [(ngModel)]="property.price"
-
-                           #price='ngModel' autofocus>
-                    <div *ngIf="price.dirty">
-                        <span *ngIf='price.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                <textarea placeholder="Description" class="form-control"
-                          [(ngModel)]="property.description"
-
-                          #description='ngModel' autofocus>
-                </textarea>
-                    <div *ngIf="description.dirty">
-                        <span *ngIf='description.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label > Property Label</label>
-                    <ng-select [items]="property_label"
-                               [(ngModel)]="property.label"
-                               #label='ngModel'
-                               autofocus
-                               bindLabel="name"
-                               bindValue="id"
-                               placeholder="Label The Property (Sale / Rent)">
-                    </ng-select>
-
-                    <div *ngIf="label.dirty">
-                        <span *ngIf='label.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-            </fieldset>
-            <br>
-
-            <fieldset>
-                <legend>Visuals</legend>
-
-                <div class="form-group">
-                    <div *ngIf="currentUpload">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-                        </div>
-                        Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        <input type="file" (change)="detectFiles($event)" multiple required>
-                    </label>
-
-                    <button
-                            class="btn btn-default"
-                            [disabled]="!selectedFiles"
-                            (click)="uploadMulti()">
-
-                        Upload Property Images
-                    </button>
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        <input type="file"  (change)="detectFile($event)" required>
-                    </label>
-
-                    <button class="btn btn-default"
-                            [disabled]="!selectedFile"
-                            (click)="uploadSingle()">
-
-                        Upload Thumbnail
-                    </button>
-                </div>
-            </fieldset>
-            <br>
-
-
-            <fieldset>
-                <legend>
-                   Property Location
-                </legend>
-                <div class="form-group">
-                <textarea placeholder="Property Address" class="form-control"
-                          [(ngModel)]="property.address"
-
-                          #address='ngModel' autofocus>
-                </textarea>
-                    <div *ngIf="address.dirty">
-                        <span *ngIf='address.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <label> Property City</label>
-                    <ng-select [items]="property_city"
-                               [(ngModel)]="property.city"
-                               #city='ngModel'
-                               autofocus
-                               bindLabel="name"
-                               bindValue="id"
-                               placeholder="Property City">
-                    </ng-select>
-
-                    <div *ngIf="city.dirty">
-                        <span *ngIf='city.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-            </fieldset>
-            <br>
-
-
-            <fieldset>
-                <legend>
-                    Property Space
-                </legend>
-
-                <div class="form-group">
-                    <label>Property Bathrooms</label>
-                    <ng-select [items]="bath_rooms"
-                            [(ngModel)]="property.bathrooms"
-                            #bathrooms='ngModel'
-                            autofocus
-                           bindLabel="name"
-                           bindValue="id"
-                           placeholder="Select Property Bathrooms">
-                    </ng-select>
-
-
-                    <div *ngIf="bathrooms.dirty">
-                        <span *ngIf='bathrooms.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Property Bedrooms</label>
-                    <ng-select [items]="bed_rooms"
-                               [(ngModel)]="property.bedrooms"
-                               #bedrooms='ngModel'
-                               autofocus
-                               bindLabel="name"
-                               bindValue="id"
-                               placeholder="Select Property Bedrooms">
-                    </ng-select>
-
-                    <div *ngIf="bedrooms.dirty">
-                        <span *ngIf='bedrooms.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-            </fieldset>
-            <br>
-
-
-            <fieldset>
-                <legend>
-                    Other
-                </legend>
-
-                <div class="form-group">
-                    <input placeholder="Contact" class="form-control"
-                           [(ngModel)]="property.contact"
-
-                           #contact='ngModel' autofocus>
-                    <div *ngIf="contact.dirty">
-                        <span *ngIf='contact.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <label > Property Period</label>
-                    <ng-select [items]="property_period"
-                               [(ngModel)]="property.period"
-                               #period='ngModel'
-                               autofocus
-                               bindLabel="name"
-                               bindValue="id"
-                               placeholder="Property Rent Period">
-                    </ng-select>
-
-                    <div *ngIf="period.dirty">
-                        <span *ngIf='period.errors; then errors'>template renders here...</span>
-                    </div>
-                </div>
-
-            </fieldset>
-
-
-        </div>
-
-        <div class="panel-footer">
-            <div class="form-group">
-                <button class="btn btn-primary" (click)='createProperty()' [disabled]="!title.valid">Create</button>
+    <form #form="ngForm" (ngSubmit)="createProperty(form)" novalidate>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Add Property</h4>
             </div>
+
+            <ul class="list-group">
+                <li class="list-group-item text-danger" *ngIf="title.errors?.required && title.touched">The title is required!</li>
+                <li class="list-group-item text-danger" *ngIf="state.errors?.required && state.touched">The state is required!</li>
+                <li class="list-group-item text-danger" *ngIf="tags.errors?.required && tags.touched">The tags is required!</li>
+                <li class="list-group-item text-danger" *ngIf="price.errors?.required && price.touched">The price is required!</li>
+                <li class="list-group-item text-danger" *ngIf="description.errors?.required && description.touched">The description is required!</li>
+                <li class="list-group-item text-danger" *ngIf="label.errors?.required && label.touched">The label is required!</li>
+                <li class="list-group-item text-danger" *ngIf="address.errors?.required && address.touched">The address is required!</li>
+                <li class="list-group-item text-danger" *ngIf="city.errors?.required && city.touched">The city is required!</li>
+                <li class="list-group-item text-danger" *ngIf="bathrooms.errors?.required && bathrooms.touched">The bathrooms is required!</li>
+                <li class="list-group-item text-danger" *ngIf="bedrooms.errors?.required && bedrooms.touched">The bedrooms is required!</li>
+                <li class="list-group-item text-danger" *ngIf="contact.errors?.required && contact.touched">The contact is required!</li>
+                <li class="list-group-item text-danger" *ngIf="period.errors?.required && period.touched">The period is required!</li>
+                <li class="list-group-item text-danger" *ngIf="status.errors?.required && status.touched">The status is required!</li>
+            </ul>
+            <br>
+
+            <div class="panel-body">
+
+                <fieldset>
+
+                    <legend>
+                        About Property
+                    </legend>
+
+                    <div class="form-group">
+                        <input placeholder="Property Title" class="form-control"
+                               ngModel
+                               name="title"
+                                required
+                               #title='ngModel' autofocus>
+                    </div>
+
+                    <div class="form-group">
+
+                        <ng-select [items]="property_state"
+                                   ngModel
+                                   name="state"
+                                   #state='ngModel'
+                                   autofocus
+                                   required
+                                   bindLabel="name"
+                                   bindValue="id"
+                                   placeholder="Property State">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label > Property Tag</label>
+                        <ng-select [items]="property_tag"
+                                   ngModel
+                                   name="tags"
+                                   #tags='ngModel'
+                                   autofocus
+                                   required
+                                   bindLabel="name"
+                                   bindValue="id"
+                                   placeholder="Tag The Property">
+                        </ng-select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <input placeholder="Price" class="form-control"
+                               ngModel
+                               name="price"
+
+                               #price='ngModel' autofocus
+                        required>
+                    </div>
+
+                    <div class="form-group">
+                    <textarea placeholder="Description" class="form-control"
+                              ngModel
+                              name="description"
+
+                              #description='ngModel' autofocus
+                    required>
+                    </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Property Status</label>
+                    <textarea placeholder="Property Status" class="form-control"
+                              ngModel
+                              name="status"
+                              rows="2"
+                              #status='ngModel' autofocus
+                              required>
+                    </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label > Property Label</label>
+                        <ng-select [items]="property_label"
+                                   ngModel
+                                   name="label"
+                                   #label='ngModel'
+                                   autofocus
+                                   required
+                                   bindLabel="name"
+                                   bindValue="id"
+                                   placeholder="Label The Property (Sale / Rent)">
+                        </ng-select>
+
+                    </div>
+
+                </fieldset>
+                <br>
+
+                <fieldset>
+                    <legend>Visuals</legend>
+
+                    <div class="form-group">
+                        <div *ngIf="currentUpload">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+                            </div>
+                            Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="file" ngModel name="images" (change)="detectFiles($event)" multiple>
+                        </label>
+
+                        <button type="button"
+                                class="btn btn-default"
+                                [disabled]="!selectedFiles"
+                                (click)="uploadMulti()">
+
+
+                            Upload Property Images
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+                            <input type="file" ngModel name="image" (change)="detectFile($event)">
+                        </label>
+
+                        <button type="button"
+                                class="btn btn-default"
+                                [disabled]="!selectedFile"
+                                (click)="uploadSingle()">
+
+                            Upload Thumbnail
+                        </button>
+                    </div>
+                </fieldset>
+                <br>
+
+
+                <fieldset>
+                    <legend>
+                       Property Location
+                    </legend>
+                    <div class="form-group">
+                    <textarea placeholder="Property Address" class="form-control"
+                              ngModel
+                              name="address"
+
+                              #address='ngModel' autofocus
+                              required>
+                    </textarea>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label> Property City</label>
+                        <ng-select [items]="property_city"
+                                   ngModel
+                                   name="city"
+                                   #city='ngModel'
+                                   autofocus
+                                   required
+                                   bindLabel="name"
+                                   bindValue="id"
+                                   placeholder="Property City">
+                        </ng-select>
+
+                    </div>
+
+                </fieldset>
+                <br>
+
+
+                <fieldset>
+                    <legend>
+                        Property Space
+                    </legend>
+
+                    <div class="form-group">
+                        <label>Property Bathrooms</label>
+                        <ng-select [items]="bath_rooms"
+                                ngModel
+                                name="bathrooms"
+                                #bathrooms='ngModel'
+                                autofocus
+                                   required
+                               bindLabel="name"
+                               bindValue="id"
+                               placeholder="Select Property Bathrooms">
+                        </ng-select>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Property Bedrooms</label>
+                        <ng-select [items]="bed_rooms"
+                                   ngModel
+                                   name="bedrooms"
+                                   #bedrooms='ngModel'
+                                   autofocus
+                                   required
+                                   bindLabel="name"
+                                   bindValue="id"
+                                   placeholder="Select Property Bedrooms">
+                        </ng-select>
+
+                    </div>
+
+                </fieldset>
+                <br>
+
+
+                <fieldset>
+                    <legend>
+                        Other
+                    </legend>
+
+                    <div class="form-group">
+                        <input placeholder="Contact" class="form-control"
+                               ngModel
+                               name="contact"
+
+                               #contact='ngModel'
+                               autofocus
+                               required>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label > Property Period</label>
+                        <ng-select [items]="property_period"
+                                   ngModel
+                                   name="period"
+                                   #period='ngModel'
+                                   autofocus
+                                   required
+                                   bindLabel="name"
+                                   bindValue="id"
+                                   placeholder="Property Rent Period">
+                        </ng-select>
+
+                    </div>
+
+                </fieldset>
+
+
+            </div>
+
+            <div class="panel-footer">
+                <div class="form-group">
+                    <button class="btn btn-primary"
+                            type="submit"
+                            [disabled]="form.invalid"
+                    >
+                        <i class="fa fa-plus"></i>
+                        Create
+                    </button>
+                </div>
+            </div>
+
         </div>
-        <ng-template #valid>
-            <p class="text-success">looks good!</p>
-        </ng-template>
-        <ng-template #errors>
-            <p class="text-danger">form contains errors!</p>
-        </ng-template>
-    </div>
+    </form>
 </div>
 <!--</form>-->
 

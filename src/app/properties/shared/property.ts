@@ -19,7 +19,7 @@ export class Property {
     tags: string;
     thumbnail: string;
     title: string;
-    // timeStamp: number;
+    timestamp: object;
     zip: number = 9000;
 
 }

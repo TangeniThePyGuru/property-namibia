@@ -7,6 +7,7 @@ import {UploadService} from "../shared/upload.service";
 import {log} from "util";
 import {Toast, ToastsManager} from "ng2-toastr";
 import {Toasts} from "../../shared/toasts";
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-property-form',
@@ -82,6 +83,7 @@ export class PropertyFormComponent extends Toasts implements OnInit {
       // add pictures
       this.property.pictures = this.upSvc.uploads;
       this.property.thumbnail = this.upSvc.thumbnail;
+      this.property.timestamp = firebase.database.ServerValue.TIMESTAMP;
     this.propertySvc.createProperty(this.property).then(() => {
         this.showSuccess('Property Successfully Added!');
         this.property = new Property();

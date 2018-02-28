@@ -4,8 +4,7 @@ import {PropertyService} from "../shared/property.service";
 import {Upload} from "../shared/upload";
 import * as _ from "lodash";
 import {UploadService} from "../shared/upload.service";
-import {log} from "util";
-import {Toast, ToastsManager} from "ng2-toastr";
+import { ToastsManager} from "ng2-toastr";
 import {Toasts} from "../../shared/toasts";
 import * as firebase from "firebase";
 
@@ -104,16 +103,16 @@ export class PropertyFormComponent extends Toasts implements OnInit {
 
     uploadSingle() {
         let file = this.selectedFile;
-        this.showInfo('Property images are uploading please Wait!')
+        this.showInfo('Property images are uploading please Wait!');
         let filesIndex = _.range(file.length);
         _.each(filesIndex, (idx) => {
             this.currentUpload = new Upload(file[idx]);
             this.upSvc.pushUpload(this.currentUpload).then((data) => {
                 this.upSvc.thumbnail = data.url;
-                this.showSuccess('File: ' +  idx + 1 + ' succesfully uploaded');
+                this.showSuccess('Thumbnail successfully uploaded');
             }, (error) => {
-                console.log(error)
-                this.showError('Error! File ' + idx + 1 + ', not uploaded, please try again!');
+                console.log(error);
+                this.showError('Error! Thumbnail not uploaded, please try again!');
             });
         });
 
@@ -122,7 +121,7 @@ export class PropertyFormComponent extends Toasts implements OnInit {
     uploadMulti() {
         let files = this.selectedFiles;
         console.log(files);
-        this.showInfo('Property images are uploading please Wait!')
+        this.showInfo('Property images are uploading please Wait!');
         let count = 1;
         let filesIndex = _.range(files.length);
         _.each(filesIndex, (idx) => {
@@ -139,7 +138,5 @@ export class PropertyFormComponent extends Toasts implements OnInit {
             }); }
         );
     }
-
-
 
 }

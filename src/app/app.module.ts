@@ -18,7 +18,7 @@ import {UploadService} from "./properties/shared/upload.service";
 import {LoginUserComponent} from "app/login-user/login-user.component";
 import {DisplayUserComponent} from "app/display-user/display-user.component";
 import {RegisterUserComponent} from "app/register-user/register-user.component";
-import {AlertModule} from "ngx-bootstrap";
+import {AlertModule, ModalModule} from "ngx-bootstrap";
 import {ResetPasswordComponent} from "./reset-password/reset-password.component";
 import {Routes, RouterModule} from "@angular/router";
 import {HomePageComponent} from "./pages/home-page.component";
@@ -37,6 +37,10 @@ import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {GalleryConfig, GalleryModule} from "ng-gallery";
 import { NgSelectModule } from '@ng-select/ng-select';
+import { BrokerComponent } from './broker/broker.component';
+import { BrokerformComponent } from './broker/brokerform/brokerform.component';
+import { BrokerDetailComponent } from './broker/broker-detail/broker-detail.component';
+import { BrokerService} from "./broker/shared/broker.service"
 
 export const config: GalleryConfig = {
     // ...
@@ -51,6 +55,8 @@ const routes: Routes = [
     { path: 'properties/create', component: PropertyFormComponent, canActivate: [LoggedInGuard]},
     { path: 'terms', component: TermsListComponent, canActivate: [LoggedInGuard]},
     { path: 'terms/create', component: TermFormComponent, canActivate: [LoggedInGuard]},
+    { path: 'brokers', component: BrokerComponent, canActivate: [LoggedInGuard] },
+    { path: 'brokers/create', component: BrokerformComponent, canActivate: [LoggedInGuard] },
     { path: '', component: HomePageComponent }
 ];
 
@@ -71,6 +77,9 @@ const routes: Routes = [
         TermsListComponent,
         TermFormComponent,
         TermDetailComponent,
+        BrokerComponent,
+        BrokerformComponent,
+        BrokerDetailComponent,
     ],
     imports: [
         BrowserModule,
@@ -86,7 +95,8 @@ const routes: Routes = [
         Ng4LoadingSpinnerModule.forRoot(),
         AngularFontAwesomeModule,
         GalleryModule.forRoot(config),
-        NgSelectModule
+        NgSelectModule,
+        ModalModule
     ],
     providers: [
         AuthService,
@@ -95,6 +105,7 @@ const routes: Routes = [
         UploadService,
         TermService,
         AngularFireDatabase,
+        BrokerService
         ],
     bootstrap: [AppComponent]
 })

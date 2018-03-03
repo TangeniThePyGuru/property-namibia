@@ -24,6 +24,9 @@
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
                         [routerLink]="['terms']" *ngIf="(isLoggedIn|async)">Terms</a></li>
 
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
+                        [routerLink]="['brokers']" *ngIf="(isLoggedIn|async)">Brokers</a></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="(isLoggedIn|async)" class="navbar-text">{{(currentUser()|async).email}}</li>

@@ -38,6 +38,7 @@ import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {GalleryConfig, GalleryModule} from "ng-gallery";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TermUpdateFormComponent } from './terms/term-update-form/term-update-form.component';
+import {NgProgressModule} from "ngx-progressbar";
 
 export const config: GalleryConfig = {
     // ...
@@ -89,7 +90,8 @@ const routes: Routes = [
         Ng4LoadingSpinnerModule.forRoot(),
         AngularFontAwesomeModule,
         GalleryModule.forRoot(config),
-        NgSelectModule
+        NgSelectModule,
+        NgProgressModule
     ],
     providers: [
         AuthService,

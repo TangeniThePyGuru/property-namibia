@@ -5,6 +5,8 @@ import {TermService} from "../shared/term.service";
 import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 import {ToastsManager} from "ng2-toastr";
 import {Toasts} from "../../shared/toasts";
+import {NgProgress} from "ngx-progressbar";
+import {until} from "selenium-webdriver";
 
 
 @Component({
@@ -17,13 +19,14 @@ export class TermsListComponent extends Toasts implements OnInit {
     public terms: FirebaseListObservable<Term[]>;
 
     constructor(private termSvc: TermService, private spinnerService: Ng4LoadingSpinnerService,
-                public toastr: ToastsManager, vcr: ViewContainerRef) {
-        super(toastr, vcr)
+                public toastr: ToastsManager, vcr: ViewContainerRef, public ngProgress: NgProgress) {
+        super(toastr, vcr);
         // this.spinnerService.show();
     }
 
     ngOnInit() {
-        this.terms = this.termSvc.getTermsList();
+        // this.ngProgress.start();
+        this.terms =  this.termSvc.getTermsList();
     }
 
     deleteTerms() {

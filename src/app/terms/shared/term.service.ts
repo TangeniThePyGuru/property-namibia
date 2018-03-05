@@ -16,8 +16,7 @@ export class TermService {
     getTermsList(query={}): FirebaseListObservable<Term[]> {
         this.terms = this.db.list(this.basePath, {
             query: query
-        });
-        console.log(this.terms)
+        })
         return this.terms;
     }
 

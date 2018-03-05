@@ -37,6 +37,7 @@ import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {GalleryConfig, GalleryModule} from "ng-gallery";
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TermUpdateFormComponent } from './terms/term-update-form/term-update-form.component';
 
 export const config: GalleryConfig = {
     // ...
@@ -51,6 +52,7 @@ const routes: Routes = [
     { path: 'properties/create', component: PropertyFormComponent, canActivate: [LoggedInGuard]},
     { path: 'terms', component: TermsListComponent, canActivate: [LoggedInGuard]},
     { path: 'terms/create', component: TermFormComponent, canActivate: [LoggedInGuard]},
+    { path: 'terms/update/:id', component: TermUpdateFormComponent, canActivate: [LoggedInGuard]},
     { path: '', component: HomePageComponent }
 ];
 
@@ -71,6 +73,7 @@ const routes: Routes = [
         TermsListComponent,
         TermFormComponent,
         TermDetailComponent,
+        TermUpdateFormComponent,
     ],
     imports: [
         BrowserModule,

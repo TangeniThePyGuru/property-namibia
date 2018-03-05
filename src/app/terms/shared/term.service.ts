@@ -22,7 +22,7 @@ export class TermService {
     }
 
     // Return a single observable term
-    getTerm(key: string): Promise<any> {
+    getTerm(key: string): Promise<Term> {
         const termPath =  `${this.basePath}/${key}`;
         // this.term =
            return new Promise((resolve, reject) => {

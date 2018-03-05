@@ -1,0 +1,43 @@
+<div class="panel panel-default" *ngIf="term">
+  <form #form="ngForm" novalidate (ngSubmit)="updateTerm(form)">
+    <div class="panel-heading">
+      <h4>Create Terms</h4>
+    </div>
+
+    <div class="panel panel-body">
+
+      <!--{{ form.value | json }}-->
+
+      <ul class="list-group">
+        <li class="list-group-item text-danger" *ngIf="title.errors?.required && title.touched">The title is required!</li>
+        <li class="list-group-item text-danger" *ngIf="content.errors?.required && content.touched">The content is required!</li>
+      </ul>
+
+      <div class="form-group">
+        <input placeholder="Term Title" class="form-control"
+               required
+               #title='ngModel'  [(ngModel)]="term.title" name="title" autofocus>
+      </div>
+
+      <div class="form-group">
+            <textarea placeholder="Term Content" class="form-control"
+                      required
+                      #content='ngModel' [(ngModel)]="term.content" name="content">
+            </textarea>
+      </div>
+      <ng-template #errors>
+        <p class="text-danger">form contains errors!</p>
+      </ng-template>
+    </div>
+
+    <div class="panel-footer">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid"
+        >
+          <i class="fa fa-plus"></i>
+          Update Term
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

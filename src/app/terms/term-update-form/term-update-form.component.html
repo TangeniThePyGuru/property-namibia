@@ -1,7 +1,7 @@
-<div class="panel panel-default" *ngIf="term">
-  <form #form="ngForm" novalidate (ngSubmit)="updateTerm(form)">
+<div class="panel panel-default" >
+  <form #form="ngForm" novalidate (ngSubmit)="updateTerm(form)" *ngIf="term">
     <div class="panel-heading">
-      <h4>Create Terms</h4>
+      <h4>Update Term</h4>
     </div>
 
     <div class="panel panel-body">

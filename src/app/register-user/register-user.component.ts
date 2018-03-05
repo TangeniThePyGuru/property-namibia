@@ -1,15 +1,18 @@
-import {Component, OnInit, EventEmitter, Output} from "@angular/core";
+import {Component, OnInit, EventEmitter, Output, ViewContainerRef} from "@angular/core";
 import {AuthService} from "app/shared/auth.service";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import {FormGroup, AbstractControl, FormBuilder, Validators} from "@angular/forms";
+import {NgProgress} from "ngx-progressbar";
+import {Toasts} from "../shared/toasts";
+import {ToastsManager} from "ng2-toastr";
 
 @Component({
     selector: 'app-register-user',
     templateUrl: './register-user.component.html',
     styleUrls: ['./register-user.component.css']
 })
-export class RegisterUserComponent {
+export class RegisterUserComponent extends Toasts{
     form: FormGroup;
     email: AbstractControl;
     name: AbstractControl;
@@ -19,8 +22,9 @@ export class RegisterUserComponent {
     @Output() onSuccess = new EventEmitter();
     @Output() onError = new EventEmitter();
 
-    constructor(private authService: AuthService,
-                private fb: FormBuilder) {
+    constructor(private authService: AuthService, private fb: FormBuilder,
+                public ngProgress: NgProgress, public toastr: ToastsManager, vcr: ViewContainerRef) {
+        super(toastr, vcr);
         this.form = fb.group({
             'name': ['', Validators.required],
             'email': ['', Validators.compose([
@@ -37,14 +41,21 @@ export class RegisterUserComponent {
     }
 
     onSubmit() {
+        this.ngProgress.start();
         if (this.form.valid) {
             this.authService.createUser(this.email.value, this.password.value, this.name.value)
                 .subscribe(
                     () => {
                         this.onSuccess.emit("success");
                         this.form.reset();
+                        this.ngProgress.done();
+                        this.showSuccess('User Successfully Registered');
                     },
-                    err => this.onError.emit(err)
+                    err => {
+                        this.onError.emit(err)
+                        this.ngProgress.done();
+                        this.showError('Error, Please Try Again!');
+                    }
                 );
         }
     }

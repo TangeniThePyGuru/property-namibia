@@ -26,7 +26,7 @@ export class AppComponent extends Toasts implements AfterViewInit {
                 private spinnerService: Ng4LoadingSpinnerService) {
         super(toastr, vcr);
         this.authService.isLoggedIn().subscribe(this.isLoggedIn);
-        this.spinnerService.show();
+        // this.spinnerService.show();
         // setTimeout(() => {
             // this.spinnerService.hide();
         // }, 3000);
@@ -38,7 +38,7 @@ export class AppComponent extends Toasts implements AfterViewInit {
     ngAfterViewInit() {
         // Copy in all the js code from the script.js. Typescript will complain but it works just fine
         // this.spinnerService.show();
-        this.spinnerService.hide();
+        // this.spinnerService.hide();
         // element(document).then(function () {
         //     this.spinnerService.hide();
         // });

@@ -20,10 +20,19 @@ export class PropertyService {
   }
 
   // Return a single observable item
-  getProperty(key: string): FirebaseObjectObservable<Property> {
+  getProperty(key: string): Promise<Property> {
     const propertyPath =  `${this.basePath}/${key}`;
-    this.property = this.db.object(propertyPath)
-    return this.property
+
+      return new Promise((resolve, reject) => {
+          this.db.object(propertyPath).subscribe((data) => {
+              resolve(data);
+              // this.property = data;
+          }, (error) => {
+              reject(error);
+          });
+      });
+
+    // return this.property
   }
 
   createProperty(property: Property): Promise<any>  {
@@ -37,9 +46,16 @@ export class PropertyService {
         // .catch(error => this.handleError(error))
   }
   // Update an existing property
-  updateProperty(key: string, value: any): void {
-    this.properties.update(key, value)
-        .catch(error => this.handleError(error))
+  updateProperty(key: string, value: any): Promise<any> {
+    // this.properties.update(key, value)
+    //     .catch(error => this.handleError(error))
+      return new Promise((resolve, reject) => {
+          this.properties.update(key, value).then(data => {
+              resolve(data);
+          }, (error) => {
+              reject(error);
+          });
+      });
   }
   // Deletes a single property
   deleteProperty(key: string): Promise<any> {

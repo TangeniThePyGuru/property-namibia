@@ -39,6 +39,7 @@ import {GalleryConfig, GalleryModule} from "ng-gallery";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TermUpdateFormComponent } from './terms/term-update-form/term-update-form.component';
 import {NgProgressModule} from "ngx-progressbar";
+import { PropertyUpdateFormComponent } from './properties/property-update-form/property-update-form.component';
 
 export const config: GalleryConfig = {
     // ...
@@ -54,6 +55,7 @@ const routes: Routes = [
     { path: 'terms', component: TermsListComponent, canActivate: [LoggedInGuard]},
     { path: 'terms/create', component: TermFormComponent, canActivate: [LoggedInGuard]},
     { path: 'terms/update/:id', component: TermUpdateFormComponent, canActivate: [LoggedInGuard]},
+    { path: 'properties/update/:id', component: PropertyUpdateFormComponent, canActivate: [LoggedInGuard]},
     { path: '', component: HomePageComponent }
 ];
 
@@ -75,6 +77,7 @@ const routes: Routes = [
         TermFormComponent,
         TermDetailComponent,
         TermUpdateFormComponent,
+        PropertyUpdateFormComponent,
     ],
     imports: [
         BrowserModule,

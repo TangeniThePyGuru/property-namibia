@@ -48,8 +48,8 @@
     </div>
 
     <div class="panel-footer">
-        <a class="btn btn-danger" (click)='deleteProperty()'> <i class="fa fa-remove"></i> Delete</a>
+        <button class="btn btn-danger" (click)='deleteProperty()'> <i class="fa fa-remove"></i> Delete</button>
         <!--<a class="btn btn-primary" (click)='updateProperty()'> <i class="fa fa-edit"></i> Edit</a>-->
-        <a class="btn btn-primary" > <i class="fa fa-edit"></i> Edit</a>
+        <a class="btn btn-primary" [routerLink]="['update/'+property.$key]"> <i class="fa fa-edit"></i> Edit</a>
     </div>
 </div>

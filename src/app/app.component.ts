@@ -9,6 +9,7 @@ import {ToastsManager} from "ng2-toastr";
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import {element} from "protractor";
 import {document} from "ngx-bootstrap/utils/facade/browser";
+import {NgProgress} from "ngx-progressbar";
 
 @Component({
     selector: 'app-root',
@@ -23,7 +24,8 @@ export class AppComponent extends Toasts implements AfterViewInit {
 
     constructor(private authService: AuthService, private router: Router,
                 public toastr: ToastsManager, vcr: ViewContainerRef,
-                private spinnerService: Ng4LoadingSpinnerService) {
+                private spinnerService: Ng4LoadingSpinnerService,
+                public ngProgress: NgProgress) {
         super(toastr, vcr);
         this.authService.isLoggedIn().subscribe(this.isLoggedIn);
         // this.spinnerService.show();
@@ -50,8 +52,12 @@ export class AppComponent extends Toasts implements AfterViewInit {
 
     logout() {
         this.authService.logout();
-        this.router.navigate(['/']);
-        this.showInfo('Your session has ended!')
+        this.ngProgress.start();
+        this.router.navigate(['/']).then(() => {
+            this.showInfo('Your session has ended!');
+            this.ngProgress.done();
+        });
+
 
     }
 

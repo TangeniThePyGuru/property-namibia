@@ -31,7 +31,7 @@
                 <br>
                 City:  {{ property.city }}
                 <br>
-                Label:  {{ property.label }}
+                Label:  <span class="label label-warning" *ngIf="property.label == 'sale'">{{ property.label }}</span> <span class="label label-info" *ngIf="property.label == 'rent'">{{ property.label }}</span>
                 <br>
                 Period:  {{ property.period }}
                 <br>

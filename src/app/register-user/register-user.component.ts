@@ -6,6 +6,7 @@ import {FormGroup, AbstractControl, FormBuilder, Validators} from "@angular/form
 import {NgProgress} from "ngx-progressbar";
 import {Toasts} from "../shared/toasts";
 import {ToastsManager} from "ng2-toastr";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-register-user',
@@ -22,7 +23,7 @@ export class RegisterUserComponent extends Toasts{
     @Output() onSuccess = new EventEmitter();
     @Output() onError = new EventEmitter();
 
-    constructor(private authService: AuthService, private fb: FormBuilder,
+    constructor(private authService: AuthService, private fb: FormBuilder, public router: Router,
                 public ngProgress: NgProgress, public toastr: ToastsManager, vcr: ViewContainerRef) {
         super(toastr, vcr);
         this.form = fb.group({
@@ -49,6 +50,7 @@ export class RegisterUserComponent extends Toasts{
                         this.onSuccess.emit("success");
                         this.form.reset();
                         this.ngProgress.done();
+                        this.router.navigate(['/']);
                         this.showSuccess('User Successfully Registered');
                     },
                     err => {
